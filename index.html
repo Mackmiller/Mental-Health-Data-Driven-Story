@@ -1,0 +1,2060 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	  <meta charset="UTF-8" />
+    <title>Exercise Portfolio</title>
+    <style>
+svg {
+  display: block;
+  margin: auto;
+  font-family: Sans-Serif, Arial;
+    }
+
+.line {
+stroke-width: 2;
+fill: none;
+}
+
+.container3 > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    min-width: 600px;;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 400px 400px 400px;
+  grid-gap: 10px;
+}
+
+
+</style>
+	</head>
+
+  <body>
+    <div class="container3">
+      <img src="title3.png"/>
+    </div>
+
+    <div id="chart">
+
+    <script src="js/d3.min.js"></script>
+
+    <script>
+    var data = [
+      {
+        county: "Escambia County",
+        values: [
+          {year: "2017", number: "1488.2"},
+          {year: "2016", number: "1604.7"},
+          {year: "2015", number: "1583"},
+          {year: "2014", number: "1550"},
+          {year: "2013", number: "1520.4"},
+          {year: "2012", number: "1445.6"},
+          {year: "2011", number: "1276"},
+          {year: "2010", number: "1156.4"},
+          {year: "2009", number: "1057.9"},
+          {year: "2008", number: "1010.6"},
+          {year: "2007", number: "998.9"},
+          {year: "2006", number: "1007.1"},
+          {year: "2005", number: "1008.9"},
+          {year: "2004", number: "1014.3"},
+          {year: "2003", number: "906.9"},
+          {year: "2002", number: "804.7"},
+          {year: "2001", number: "802"},
+          {year: "2000", number: "847.6"},
+          {year: "1999", number: "787.5"},
+          {year: "1998", number: "777.1"}
+        ]
+      },
+      {
+
+        county: "Broward County",
+        values: [
+          {year: "2017", number: "1150.8"},
+          {year: "2016", number: "1219.6"},
+          {year: "2015", number: "1292.40"},
+          {year: "2014", number: "1174.4"},
+          {year: "2013", number: "1112.8"},
+          {year: "2012", number: "1058.2"},
+          {year: "2011", number: "1101"},
+          {year: "2010", number: "1097"},
+          {year: "2009", number: "1051.6"},
+          {year: "2008", number: "1014.1"},
+          {year: "2007", number: "1013.4"},
+          {year: "2006", number: "1012.4"},
+          {year: "2005", number: "996"},
+          {year: "2004", number: "1030.1"},
+          {year: "2003", number: "1028.3"},
+          {year: "2002", number: "1089.2"},
+          {year: "2001", number: "1098.1"},
+          {year: "2000", number: "1037.4"},
+          {year: "1999", number: "979.9"},
+          {year: "1998", number: "966.8"}
+        ]
+      },
+      {
+        county: "Florida Average",
+        values: [
+          {year: "2017", number: "975.4"},
+          {year: "2016", number: "976.8"},
+          {year: "2015", number: "1012.5"},
+          {year: "2014", number: "977.4"},
+          {year: "2013", number: "943.7"},
+          {year: "2012", number: "912.6"},
+          {year: "2011", number: "873.4"},
+          {year: "2010", number: "838.3"},
+          {year: "2009", number: "786.8"},
+          {year: "2008", number: "740.1"},
+          {year: "2007", number: "717.9"},
+          {year: "2006", number: "717.8"},
+          {year: "2005", number: "738.5"},
+          {year: "2004", number: "756.8"},
+          {year: "2003", number: "756.2"},
+          {year: "2002", number: "771.6"},
+          {year: "2001", number: "766.1"},
+          {year: "2000", number: "737.1"},
+          {year: "1999", number: "744.8"},
+          {year: "1998", number: "764.5"}
+        ]
+      },
+      {
+        county: "Miami-Dade County",
+        values: [
+          {year: "2017", number: "1133.3"},
+          {year: "2016", number: "1185.5"},
+          {year: "2015", number: "1287.9"},
+          {year: "2014", number: "1279.9"},
+          {year: "2013", number: "1206.7"},
+          {year: "2012", number: "1144.5"},
+          {year: "2011", number: "1073"},
+          {year: "2010", number: "1029.6"},
+          {year: "2009", number: "1019.9"},
+          {year: "2008", number: "953.3"},
+          {year: "2007", number: "904.2"},
+          {year: "2006", number: "914.1"},
+          {year: "2005", number: "949.9"},
+          {year: "2004", number: "895.5"},
+          {year: "2003", number: "907.6"},
+          {year: "2002", number: "905.3"},
+          {year: "2001", number: "885.5"},
+          {year: "2000", number: "916.3"},
+          {year: "1999", number: "926.5"},
+          {year: "1998", number: "950.4"}
+        ]
+      },
+      {
+        county: "Palm Beach County",
+        values: [
+          {year: "2017", number: "1040.2"},
+          {year: "2016", number: "1027.9"},
+          {year: "2015", number: "1065.7"},
+          {year: "2014", number: "1061.7"},
+          {year: "2013", number: "1072.6"},
+          {year: "2012", number: "1071.2"},
+          {year: "2011", number: "1009.5"},
+          {year: "2010", number: "927"},
+          {year: "2009", number: "903"},
+          {year: "2008", number: "897.6"},
+          {year: "2007", number: "868.5"},
+          {year: "2006", number: "871.4"},
+          {year: "2005", number: "921"},
+          {year: "2004", number: "965.5"},
+          {year: "2003", number: "996.1"},
+          {year: "2002", number: "963.6"},
+          {year: "2001", number: "817.9"},
+          {year: "2000", number: "738.6"},
+          {year: "1999", number: "815.2"},
+          {year: "1998", number: "841.6"}
+        ]
+      },
+      {
+        county: "Orange County",
+        values: [
+          {year: "2017", number: "955.4"},
+          {year: "2016", number: "931.8"},
+          {year: "2015", number: "964.2"},
+          {year: "2014", number: "895.8"},
+          {year: "2013", number: "849"},
+          {year: "2012", number: "773.7"},
+          {year: "2011", number: "693.5"},
+          {year: "2010", number: "719.8"},
+          {year: "2009", number: "683.9"},
+          {year: "2008", number: "605.8"},
+          {year: "2007", number: "582.7"},
+          {year: "2006", number: "574.6"},
+          {year: "2005", number: "594.7"},
+          {year: "2004", number: "573.1"},
+          {year: "2003", number: "571.9"},
+          {year: "2002", number: "550"},
+          {year: "2001", number: "570.5"},
+          {year: "2000", number: "485.4"},
+          {year: "1999", number: "517"},
+          {year: "1998", number: "675.4"}
+        ]
+      },
+      {
+        county: "Seminole County",
+        values: [
+          {year: "2017", number: "946.3"},
+          {year: "2016", number: "950.9"},
+          {year: "2015", number: "974"},
+          {year: "2014", number: "931.4"},
+          {year: "2013", number: "901.2"},
+          {year: "2012", number: "874.3"},
+          {year: "2011", number: "900.2"},
+          {year: "2010", number: "858.5"},
+          {year: "2009", number: "809.8"},
+          {year: "2008", number: "651.4"},
+          {year: "2007", number: "649.6"},
+          {year: "2006", number: "610.1"},
+          {year: "2005", number: "634.4"},
+          {year: "2004", number: "628.9"},
+          {year: "2003", number: "547.6"},
+          {year: "2002", number: "547.8"},
+          {year: "2001", number: "538.9"},
+          {year: "2000", number: "458.2"},
+          {year: "1999", number: "420.2"},
+          {year: "1998", number: "504.8"}
+        ]
+      },
+      {
+        county: "Osceola County",
+        values: [
+          {year: "2017", number: "781.7"},
+          {year: "2016", number: "776.6"},
+          {year: "2015", number: "816.3"},
+          {year: "2014", number: "635.5"},
+          {year: "2013", number: "546.4"},
+          {year: "2012", number: "549.9"},
+          {year: "2011", number: "563.2"},
+          {year: "2010", number: "493"},
+          {year: "2009", number: "420.1"},
+          {year: "2008", number: "332"},
+          {year: "2007", number: "315.8"},
+          {year: "2006", number: "294.7"},
+          {year: "2005", number: "396.6"},
+          {year: "2004", number: "400.6"},
+          {year: "2003", number: "419.6"},
+          {year: "2002", number: "399.8"},
+          {year: "2001", number: "380.6"},
+          {year: "2000", number: "299.7"},
+          {year: "1999", number: "525.4"},
+          {year: "1998", number: "656"}
+        ]
+      },
+      {
+        county: "Baker County",
+        values: [
+          {year: "2017", number: "491"},
+          {year: "2016", number: "460.2"},
+          {year: "2015", number: "629.9"},
+          {year: "2014", number: "676"},
+          {year: "2013", number: "605"},
+          {year: "2012", number: "592.3"},
+          {year: "2011", number: "641.5"},
+          {year: "2010", number: "574.4"},
+          {year: "2009", number: "647.2"},
+          {year: "2008", number: "490"},
+          {year: "2007", number: "528.6"},
+          {year: "2006", number: "590.9"},
+          {year: "2005", number: "501.9"},
+          {year: "2004", number: "596.9"},
+          {year: "2003", number: "613.1"},
+          {year: "2002", number: "577"},
+          {year: "2001", number: "750.6"},
+          {year: "2000", number: "622.8"},
+          {year: "1999", number: "636.8"},
+          {year: "1998", number: "495.7"}
+        ]
+      },
+      {
+        county: "Bay County",
+        values: [
+          {year: "2017", number: "990.4"},
+          {year: "2016", number: "958.4"},
+          {year: "2015", number: "999.6"},
+          {year: "2014", number: "1114.3"},
+          {year: "2013", number: "1032.5"},
+          {year: "2012", number: "995.5"},
+          {year: "2011", number: "1006.7"},
+          {year: "2010", number: "998.1"},
+          {year: "2009", number: "865.4"},
+          {year: "2008", number: "907.3"},
+          {year: "2007", number: "914.4"},
+          {year: "2006", number: "976.8"},
+          {year: "2005", number: "987.6"},
+          {year: "2004", number: "1119.1"},
+          {year: "2003", number: "1013.4"},
+          {year: "2002", number: "997.3"},
+          {year: "2001", number: "1084.3"},
+          {year: "2000", number: "923.7"},
+          {year: "1999", number: "772.8"},
+          {year: "1998", number: "834"}
+        ]
+      },
+      {
+        county: "Bradford County",
+        values: [
+          {year: "2017", number: "698.9"},
+          {year: "2016", number: "618.7"},
+          {year: "2015", number: "572.3"},
+          {year: "2014", number: "689.4"},
+          {year: "2013", number: "612.9"},
+          {year: "2012", number: "556"},
+          {year: "2011", number: "602.9"},
+          {year: "2010", number: "549.6"},
+          {year: "2009", number: "484.1"},
+          {year: "2008", number: "422.6"},
+          {year: "2007", number: "414.4"},
+          {year: "2006", number: "338.8"},
+          {year: "2005", number: "562.8"},
+          {year: "2004", number: "444"},
+          {year: "2003", number: "407.6"},
+          {year: "2002", number: "412.2"},
+          {year: "2001", number: "476.1"},
+          {year: "2000", number: "377.4"},
+          {year: "1999", number: "418.6"},
+          {year: "1998", number: "344.3"}
+        ]
+      },
+      {
+        county: "Brevard County",
+        values: [
+          {year: "2017", number: "791.5"},
+          {year: "2016", number: "754.5"},
+          {year: "2015", number: "798.8"},
+          {year: "2014", number: "736.3"},
+          {year: "2013", number: "727"},
+          {year: "2012", number: "688.8"},
+          {year: "2011", number: "981"},
+          {year: "2010", number: "1270.4"},
+          {year: "2009", number: "1280.6"},
+          {year: "2008", number: "1136.4"},
+          {year: "2007", number: "1153.5"},
+          {year: "2006", number: "1239.7"},
+          {year: "2005", number: "1200.1"},
+          {year: "2004", number: "1310.2"},
+          {year: "2003", number: "1296.5"},
+          {year: "2002", number: "1296.1"},
+          {year: "2001", number: "1251"},
+          {year: "2000", number: "1176.1"},
+          {year: "1999", number: "1086.4"},
+          {year: "1998", number: "1050.8"}
+        ]
+      },
+      {
+        county: "Calhoun County",
+        values: [
+          {year: "2017", number: "1076.3"},
+          {year: "2016", number: "730.5"},
+          {year: "2015", number: "784.5"},
+          {year: "2014", number: "783.7"},
+          {year: "2013", number: "786.6"},
+          {year: "2012", number: "566.6"},
+          {year: "2011", number: "677"},
+          {year: "2010", number: "489.3"},
+          {year: "2009", number: "480.4"},
+          {year: "2008", number: "528.6"},
+          {year: "2007", number: "482.5"},
+          {year: "2006", number: "596.5"},
+          {year: "2005", number: "447.6"},
+          {year: "2004", number: "598.4"},
+          {year: "2003", number: "512.4"},
+          {year: "2002", number: "533.7"},
+          {year: "2001", number: "682.5"},
+          {year: "2000", number: "595.1"},
+          {year: "1999", number: "516.8"},
+          {year: "1998", number: "617.7"}
+        ]
+      },
+      {
+        county: "Charlotte County",
+        values: [
+          {year: "2017", number: "978.5"},
+          {year: "2016", number: "941.8"},
+          {year: "2015", number: "858.6"},
+          {year: "2014", number: "741.5"},
+          {year: "2013", number: "655.4"},
+          {year: "2012", number: "643.9"},
+          {year: "2011", number: "532.3"},
+          {year: "2010", number: "597.6"},
+          {year: "2009", number: "524.7"},
+          {year: "2008", number: "506.3"},
+          {year: "2007", number: "502.3"},
+          {year: "2006", number: "499.9"},
+          {year: "2005", number: "496.4"},
+          {year: "2004", number: "499"},
+          {year: "2003", number: "515.3"},
+          {year: "2002", number: "555.3"},
+          {year: "2001", number: "387.8"},
+          {year: "2000", number: "557"},
+          {year: "1999", number: "659.2"},
+          {year: "1998", number: "611.2"}
+        ]
+      },
+      {
+        county: "Citrus County",
+        values: [
+          {year: "2017", number: "1179.7"},
+          {year: "2016", number: "1182.6"},
+          {year: "2015", number: "1088.0"},
+          {year: "2014", number: "1052.1"},
+          {year: "2013", number: "898.1"},
+          {year: "2012", number: "913"},
+          {year: "2011", number: "697.1"},
+          {year: "2010", number: "689.1"},
+          {year: "2009", number: "420.7"},
+          {year: "2008", number: "390.1"},
+          {year: "2007", number: "353.1"},
+          {year: "2006", number: "461.5"},
+          {year: "2005", number: "558.7"},
+          {year: "2004", number: "584"},
+          {year: "2003", number: "516.1"},
+          {year: "2002", number: "557.5"},
+          {year: "2001", number: "544.6"},
+          {year: "2000", number: "705.1"},
+          {year: "1999", number: "488.6"},
+          {year: "1998", number: "443.3"}
+        ]
+      },
+      {
+        county: "Clay County",
+        values: [
+          {year: "2017", number: "973.7"},
+          {year: "2016", number: "959.4"},
+          {year: "2015", number: "866.8"},
+          {year: "2014", number: "878"},
+          {year: "2013", number: "789.3"},
+          {year: "2012", number: "849"},
+          {year: "2011", number: "861.9"},
+          {year: "2010", number: "789.8"},
+          {year: "2009", number: "774.6"},
+          {year: "2008", number: "728.4"},
+          {year: "2007", number: "592.7"},
+          {year: "2006", number: "576"},
+          {year: "2005", number: "535.9"},
+          {year: "2004", number: "752.7"},
+          {year: "2003", number: "767.5"},
+          {year: "2002", number: "841.7"},
+          {year: "2001", number: "869.5"},
+          {year: "2000", number: "813.2"},
+          {year: "1999", number: "733.2"},
+          {year: "1998", number: "695.3"}
+        ]
+      },
+      {
+        county: "Collier County",
+        values: [
+          {year: "2017", number: "590.8"},
+          {year: "2016", number: "508"},
+          {year: "2015", number: "633.2"},
+          {year: "2014", number: "562.9"},
+          {year: "2013", number: "597.4"},
+          {year: "2012", number: "662.8"},
+          {year: "2011", number: "592.9"},
+          {year: "2010", number: "525.9"},
+          {year: "2009", number: "464.6"},
+          {year: "2008", number: "400.6"},
+          {year: "2007", number: "374.4"},
+          {year: "2006", number: "293"},
+          {year: "2005", number: "294.6"},
+          {year: "2004", number: "360.3"},
+          {year: "2003", number: "276.7"},
+          {year: "2002", number: "293.7"},
+          {year: "2001", number: "310.5"},
+          {year: "2000", number: "417.8"},
+          {year: "1999", number: "415.2"},
+          {year: "1998", number: "456"}
+        ]
+      },
+      {
+        county: "Columbia County",
+        values: [
+          {year: "2017", number: "791.2"},
+          {year: "2016", number: "848.9"},
+          {year: "2015", number: "780.6"},
+          {year: "2014", number: "746.2"},
+          {year: "2013", number: "675.5"},
+          {year: "2012", number: "704"},
+          {year: "2011", number: "674.6"},
+          {year: "2010", number: "689"},
+          {year: "2009", number: "626.4"},
+          {year: "2008", number: "579.7"},
+          {year: "2007", number: "520.6"},
+          {year: "2006", number: "553.3"},
+          {year: "2005", number: "683.1"},
+          {year: "2004", number: "528.8"},
+          {year: "2003", number: "554.6"},
+          {year: "2002", number: "546.7"},
+          {year: "2001", number: "783.7"},
+          {year: "2000", number: "759.7"},
+          {year: "1999", number: "760.5"},
+          {year: "1998", number: "703.2"}
+        ]
+      },
+      {
+        county: "DeSoto County",
+        values: [
+          {year: "2017", number: "448.2"},
+          {year: "2016", number: "317.1"},
+          {year: "2015", number: "357.2"},
+          {year: "2014", number: "334.6"},
+          {year: "2013", number: "241.3"},
+          {year: "2012", number: "287"},
+          {year: "2011", number: "313.1"},
+          {year: "2010", number: "321.1"},
+          {year: "2009", number: "285.9"},
+          {year: "2008", number: "266.8"},
+          {year: "2007", number: "353.6"},
+          {year: "2006", number: "390.1"},
+          {year: "2005", number: "417.8"},
+          {year: "2004", number: "383.8"},
+          {year: "2003", number: "355.6"},
+          {year: "2002", number: "392.1"},
+          {year: "2001", number: "271"},
+          {year: "2000", number: "344.3"},
+          {year: "1999", number: "370.5"},
+          {year: "1998", number: "441.1"}
+        ]
+      },
+      {
+        county: "Dixie County",
+        values: [
+          {year: "2017", number: "844.6"},
+          {year: "2016", number: "764.3"},
+          {year: "2015", number: "704.5"},
+          {year: "2014", number: "635.3"},
+          {year: "2013", number: "715.5"},
+          {year: "2012", number: "450.7"},
+          {year: "2011", number: "583.8"},
+          {year: "2010", number: "461.3"},
+          {year: "2009", number: "487.9"},
+          {year: "2008", number: "412.5"},
+          {year: "2007", number: "581.3"},
+          {year: "2006", number: "602.1"},
+          {year: "2005", number: "342.7"},
+          {year: "2004", number: "281.8"},
+          {year: "2003", number: "223.3"},
+          {year: "2002", number: "229.4"},
+          {year: "2001", number: "286.5"},
+          {year: "2000", number: "423.5"},
+          {year: "1999", number: "442.8"},
+          {year: "1998", number: "359.4"}
+        ]
+      },
+      {
+        county: "Duval County",
+        values: [
+          {year: "2017", number: "1060.6"},
+          {year: "2016", number: "960.8"},
+          {year: "2015", number: "1000.4"},
+          {year: "2014", number: "1035.4"},
+          {year: "2013", number: "981.6"},
+          {year: "2012", number: "942"},
+          {year: "2011", number: "877.6"},
+          {year: "2010", number: "856.8"},
+          {year: "2009", number: "828.6"},
+          {year: "2008", number: "780.5"},
+          {year: "2007", number: "772.1"},
+          {year: "2006", number: "711.8"},
+          {year: "2005", number: "701.1"},
+          {year: "2004", number: "709.5"},
+          {year: "2003", number: "749"},
+          {year: "2002", number: "746.8"},
+          {year: "2001", number: "777.9"},
+          {year: "2000", number: "724.7"},
+          {year: "1999", number: "690"},
+          {year: "1998", number: "700.7"}
+        ]
+      },
+
+          {
+            county: "Flagler County",
+            values: [
+              {year: "2017", number: "695.9"},
+              {year: "2016", number: "682.1"},
+              {year: "2015", number: "683.7"},
+              {year: "2014", number: "685.1"},
+              {year: "2013", number: "794.6"},
+              {year: "2012", number: "733.4"},
+              {year: "2011", number: "626.2"},
+              {year: "2010", number: "607.2"},
+              {year: "2009", number: "611"},
+              {year: "2008", number: "573.2"},
+              {year: "2007", number: "576.7"},
+              {year: "2006", number: "518.8"},
+              {year: "2005", number: "563"},
+              {year: "2004", number: "674.3"},
+              {year: "2003", number: "629.8"},
+              {year: "2002", number: "838.3"},
+              {year: "2001", number: "766.3"},
+              {year: "2000", number: "843.3"},
+              {year: "1999", number: "417.2"},
+              {year: "1998", number: "543.3"}
+            ]
+          },
+
+          {
+            county: "Franklin County",
+            values: [
+              {year: "2017", number: "553.2"},
+              {year: "2016", number: "447.6"},
+              {year: "2015", number: "540.5"},
+              {year: "2014", number: "520.7"},
+              {year: "2013", number: "399.4"},
+              {year: "2012", number: "429.8"},
+              {year: "2011", number: "427.7"},
+              {year: "2010", number: "299.8"},
+              {year: "2009", number: "336.9"},
+              {year: "2008", number: "471.7"},
+              {year: "2007", number: "446"},
+              {year: "2006", number: "719.4"},
+              {year: "2005", number: "957.9"},
+              {year: "2004", number: "554.7"},
+              {year: "2003", number: "813.8"},
+              {year: "2002", number: "725.8"},
+              {year: "2001", number: "700.3"},
+              {year: "2000", number: "644.6"},
+              {year: "1999", number: "752.5"},
+              {year: "1998", number: "660.3"}
+            ]
+          },
+
+          {
+            county: "Gadsden County",
+            values: [
+              {year: "2017", number: "851.9"},
+              {year: "2016", number: "707.1"},
+              {year: "2015", number: "833.3"},
+              {year: "2014", number: "779.5"},
+              {year: "2013", number: "763.6"},
+              {year: "2012", number: "762"},
+              {year: "2011", number: "750.1"},
+              {year: "2010", number: "691.8"},
+              {year: "2009", number: "673.4"},
+              {year: "2008", number: "693.7"},
+              {year: "2007", number: "805.1"},
+              {year: "2006", number: "779.8"},
+              {year: "2005", number: "754"},
+              {year: "2004", number: "744.3"},
+              {year: "2003", number: "688.5"},
+              {year: "2002", number: "650.3"},
+              {year: "2001", number: "692"},
+              {year: "2000", number: "638.1"},
+              {year: "1999", number: "576.2"},
+              {year: "1998", number: "674.4"}
+            ]
+          },
+
+          {
+            county: "Gilchrist County",
+            values: [
+              {year: "2017", number: "667.7"},
+              {year: "2016", number: "943.3"},
+              {year: "2015", number: "641.9"},
+              {year: "2014", number: "681"},
+              {year: "2013", number: "519.1"},
+              {year: "2012", number: "506.7"},
+              {year: "2011", number: "591.6"},
+              {year: "2010", number: "571.1"},
+              {year: "2009", number: "360.8"},
+              {year: "2008", number: "383.4"},
+              {year: "2007", number: "283.2"},
+              {year: "2006", number: "436.3"},
+              {year: "2005", number: "511"},
+              {year: "2004", number: "458.6"},
+              {year: "2003", number: "511.4"},
+              {year: "2002", number: "305.5"},
+              {year: "2001", number: "512.1"},
+              {year: "2000", number: "597.1"},
+              {year: "1999", number: "394.5"},
+              {year: "1998", number: "376.2"}
+            ]
+          },
+          {
+            county: "Glades County",
+            values: [
+              {year: "2017", number: "119.6"},
+              {year: "2016", number: "263.8"},
+              {year: "2015", number: "175.2"},
+              {year: "2014", number: "182"},
+              {year: "2013", number: "154.1"},
+              {year: "2012", number: "162.3"},
+              {year: "2011", number: "114.2"},
+              {year: "2010", number: "161.5"},
+              {year: "2009", number: "107.6"},
+              {year: "2008", number: "107.6"},
+              {year: "2007", number: "76.5"},
+              {year: "2006", number: "92.8"},
+              {year: "2005", number: "84.1"},
+              {year: "2004", number: "122.1"},
+              /*{year: "2003", number: ""},*/
+              {year: "2002", number: "67.4"},
+              {year: "2001", number: "74.5"},
+              {year: "2000", number: "82.6"},
+              {year: "1999", number: "172.4"},
+              {year: "1998", number: "104.1"}
+            ]
+          },
+          {
+            county: "Gulf County",
+            values: [
+              {year: "2017", number: "613.6"},
+              {year: "2016", number: "576.6"},
+              {year: "2015", number: "614.5"},
+              {year: "2014", number: "596.8"},
+              {year: "2013", number: "568.1"},
+              {year: "2012", number: "611.3"},
+              {year: "2011", number: "768.8"},
+              {year: "2010", number: "757.6"},
+              {year: "2009", number: "553.2"},
+              {year: "2008", number: "491.7"},
+              {year: "2007", number: "463.1"},
+              {year: "2006", number: "485.5"},
+              {year: "2005", number: "518.1"},
+              {year: "2004", number: "762.6"},
+              {year: "2003", number: "674.6"},
+              {year: "2002", number: "688.5"},
+              {year: "2001", number: "578.6"},
+              {year: "2000", number: "642.9"},
+              {year: "1999", number: "652"},
+              {year: "1998", number: "606.1"}
+            ]
+          },
+          {
+            county: "Hamilton County",
+            values: [
+              {year: "2017", number: "480.8"},
+              {year: "2016", number: "478.8"},
+              {year: "2015", number: "472.2"},
+              {year: "2014", number: "562"},
+              {year: "2013", number: "348.9"},
+              {year: "2012", number: "339.8"},
+              {year: "2011", number: "501.7"},
+              {year: "2010", number: "353.4"},
+              {year: "2009", number: "375.3"},
+              {year: "2008", number: "371.7"},
+              {year: "2007", number: "284.9"},
+              {year: "2006", number: "454"},
+              {year: "2005", number: "611.5"},
+              {year: "2004", number: "562.7"},
+              {year: "2003", number: "601.1"},
+              {year: "2002", number: "382.5"},
+              {year: "2001", number: "639.7"},
+              {year: "2000", number: "747"},
+              {year: "1999", number: "620.7"},
+              {year: "1998", number: "441.1"}
+        ]
+      },
+      {
+        county: "Hardee County",
+        values: [
+          {year: "2017", number: "355.7"},
+          {year: "2016", number: "352.6"},
+          {year: "2015", number: "327.3"},
+          {year: "2014", number: "327.6"},
+          {year: "2013", number: "385.1"},
+          {year: "2012", number: "417.9"},
+          {year: "2011", number: "370.4"},
+          {year: "2010", number: "412.1"},
+          {year: "2009", number: "389.9"},
+          {year: "2008", number: "378.9"},
+          {year: "2007", number: "332.7"},
+          {year: "2006", number: "364.6"},
+          {year: "2005", number: "327.1"},
+          {year: "2004", number: "187.3"},
+          {year: "2003", number: "347.6"},
+          {year: "2002", number: "272.6"},
+          {year: "2001", number: "433.9"},
+          {year: "2000", number: "335"},
+          {year: "1999", number: "269.2"},
+          {year: "1998", number: "291.1"}
+    ]
+  },
+  {
+    county: "Hendry County",
+    values: [
+      {year: "2017", number: "449.1"},
+      {year: "2016", number: "515"},
+      {year: "2015", number: "479.4"},
+      {year: "2014", number: "390.5"},
+      {year: "2013", number: "338.9"},
+      {year: "2012", number: "247.8"},
+      {year: "2011", number: "304"},
+      {year: "2010", number: "274.8"},
+      {year: "2009", number: "233.6"},
+      {year: "2008", number: "296.7"},
+      {year: "2007", number: "251.1"},
+      {year: "2006", number: "216.8"},
+      {year: "2005", number: "228.6"},
+      {year: "2004", number: "217.2"},
+      {year: "2003", number: "176.4"},
+      {year: "2002", number: "157.4"},
+      {year: "2001", number: "210.6"},
+      {year: "2000", number: "250"},
+      {year: "1999", number: "355.5"},
+      {year: "1998", number: "461.2"}
+]
+},
+{
+  county: "Hernando County",
+  values: [
+    {year: "2017", number: "1446.9"},
+    {year: "2016", number: "1482.9"},
+    {year: "2015", number: "1429.5"},
+    {year: "2014", number: "1365.1"},
+    {year: "2013", number: "1503.6"},
+    {year: "2012", number: "1357.2"},
+    {year: "2011", number: "758.9"},
+    {year: "2010", number: "701.1"},
+    {year: "2009", number: "743"},
+    {year: "2008", number: "728.3"},
+    {year: "2007", number: "694.4"},
+    {year: "2006", number: "677.8"},
+    {year: "2005", number: "728.1"},
+    {year: "2004", number: "822.6"},
+    {year: "2003", number: "1003.8"},
+    {year: "2002", number: "1107.5"},
+    {year: "2001", number: "1329"},
+    {year: "2000", number: "1128.1"},
+    {year: "1999", number: "1069.2"},
+    {year: "1998", number: "1021.9"}
+]
+},
+{
+  county: "Highlands County",
+  values: [
+    {year: "2017", number: "755.8"},
+    {year: "2016", number: "694.7"},
+    {year: "2015", number: "743.7"},
+    {year: "2014", number: "740.7"},
+    {year: "2013", number: "672.6"},
+    {year: "2012", number: "634.6"},
+    {year: "2011", number: "733.3"},
+    {year: "2010", number: "593.6"},
+    {year: "2009", number: "493.7"},
+    {year: "2008", number: "454"},
+    {year: "2007", number: "520.7"},
+    {year: "2006", number: "510.6"},
+    {year: "2005", number: "564.4"},
+    {year: "2004", number: "477.7"},
+    {year: "2003", number: "423.6"},
+    {year: "2002", number: "548.3"},
+    {year: "2001", number: "522.7"},
+    {year: "2000", number: "447.5"},
+    {year: "1999", number: "451.9"},
+    {year: "1998", number: "518.3"}
+]
+},
+{
+  county: "Hillsborough County",
+  values: [
+    {year: "2017", number: "667.8"},
+    {year: "2016", number: "697.2"},
+    {year: "2015", number: "742.5"},
+    {year: "2014", number: "735.4"},
+    {year: "2013", number: "732"},
+    {year: "2012", number: "755.1"},
+    {year: "2011", number: "672.2"},
+    {year: "2010", number: "574.3"},
+    {year: "2009", number: "521.4"},
+    {year: "2008", number: "511.4"},
+    {year: "2007", number: "498"},
+    {year: "2006", number: "505.9"},
+    {year: "2005", number: "533"},
+    {year: "2004", number: "541.4"},
+    {year: "2003", number: "528.7"},
+    {year: "2002", number: "545.8"},
+    {year: "2001", number: "561.7"},
+    {year: "2000", number: "539.7"},
+    {year: "1999", number: "685"},
+    {year: "1998", number: "704.9"}
+]
+},
+{
+  county: "Holmes County",
+  values: [
+    {year: "2017", number: "982.8"},
+    {year: "2016", number: "858.9"},
+    {year: "2015", number: "922.1"},
+    {year: "2014", number: "1019.5"},
+    {year: "2013", number: "887.9"},
+    {year: "2012", number: "892.9"},
+    {year: "2011", number: "714.5"},
+    {year: "2010", number: "594.3"},
+    {year: "2009", number: "584.4"},
+    {year: "2008", number: "450.8"},
+    {year: "2007", number: "517.1"},
+    {year: "2006", number: "516"},
+    {year: "2005", number: "579.1"},
+    {year: "2004", number: "592"},
+    {year: "2003", number: "555.7"},
+    {year: "2002", number: "492.4"},
+    {year: "2001", number: "523.6"},
+    {year: "2000", number: "576"},
+    {year: "1999", number: "372.3"},
+    {year: "1998", number: "336.3"}
+]
+},
+{
+  county: "Indian River County",
+  values: [
+    {year: "2017", number: "1282"},
+    {year: "2016", number: "1299.6"},
+    {year: "2015", number: "1424.5"},
+    {year: "2014", number: "1549.6"},
+    {year: "2013", number: "1555.2"},
+    {year: "2012", number: "1599.3"},
+    {year: "2011", number: "1424.4"},
+    {year: "2010", number: "1362.5"},
+    {year: "2009", number: "1330.7"},
+    {year: "2008", number: "1222.2"},
+    {year: "2007", number: "1083.6"},
+    {year: "2006", number: "1068.7"},
+    {year: "2005", number: "1038.9"},
+    {year: "2004", number: "1074.7"},
+    {year: "2003", number: "1058.1"},
+    {year: "2002", number: "992.6"},
+    {year: "2001", number: "980.3"},
+    {year: "2000", number: "890.8"},
+    {year: "1999", number: "786"},
+    {year: "1998", number: "815.7"}
+]
+},
+{
+  county: "Jefferson County",
+  values: [
+    {year: "2017", number: "779.2"},
+    {year: "2016", number: "877.5"},
+    {year: "2015", number: "824.5"},
+    {year: "2014", number: "838.7"},
+    {year: "2013", number: "838.8"},
+    {year: "2012", number: "981.7"},
+    {year: "2011", number: "966.1"},
+    {year: "2010", number: "712.6"},
+    {year: "2009", number: "726.4"},
+    {year: "2008", number: "685.4"},
+    {year: "2007", number: "648.2"},
+    {year: "2006", number: "621.2"},
+    {year: "2005", number: "977.6"},
+    {year: "2004", number: "709.6"},
+    {year: "2003", number: "680.3"},
+    {year: "2002", number: "802.2"},
+    {year: "2001", number: "869.8"},
+    {year: "2000", number: "567.2"},
+    {year: "1999", number: "771.3"},
+    {year: "1998", number: "681.1"}
+]
+},
+{
+  county: "Lake County",
+  values: [
+    {year: "2017", number: "853.6"},
+    {year: "2016", number: "818.7"},
+    {year: "2015", number: "899.4"},
+    {year: "2014", number: "978"},
+    {year: "2013", number: "997.1"},
+    {year: "2012", number: "982.8"},
+    {year: "2011", number: "950"},
+    {year: "2010", number: "928"},
+    {year: "2009", number: "901.5"},
+    {year: "2008", number: "799.1"},
+    {year: "2007", number: "767.2"},
+    {year: "2006", number: "742"},
+    {year: "2005", number: "677.8"},
+    {year: "2004", number: "664.9"},
+    {year: "2003", number: "662.6"},
+    {year: "2002", number: "635.8"},
+    {year: "2001", number: "872.5"},
+    {year: "2000", number: "745.5"},
+    {year: "1999", number: "670.3"},
+    {year: "1998", number: "832.7"}
+]
+},
+{
+  county: "Lee County",
+  values: [
+    {year: "2017", number: "625.1"},
+    {year: "2016", number: "602.4"},
+    {year: "2015", number: "612.1"},
+    {year: "2014", number: "525.5"},
+    {year: "2013", number: "491.4"},
+    {year: "2012", number: "450.9"},
+    {year: "2011", number: "403.7"},
+    {year: "2010", number: "349.7"},
+    {year: "2009", number: "357"},
+    {year: "2008", number: "342.8"},
+    {year: "2007", number: "301.8"},
+    {year: "2006", number: "211.7"},
+    {year: "2005", number: "228.2"},
+    {year: "2004", number: "232.9"},
+    {year: "2003", number: "248.8"},
+    {year: "2002", number: "223.5"},
+    {year: "2001", number: "203.7"},
+    {year: "2000", number: "451.1"},
+    {year: "1999", number: "790.6"},
+    {year: "1998", number: "696.3"}
+]
+},
+{
+  county: "Levy County",
+  values: [
+    {year: "2017", number: "832.1"},
+    {year: "2016", number: "775.9"},
+    {year: "2015", number: "723"},
+    {year: "2014", number: "631.8"},
+    {year: "2013", number: "601.4"},
+    {year: "2012", number: "635.8"},
+    {year: "2011", number: "611.4"},
+    {year: "2010", number: "570.4"},
+    {year: "2009", number: "476.7"},
+    {year: "2008", number: "490.5"},
+    {year: "2007", number: "534.6"},
+    {year: "2006", number: "626.8"},
+    {year: "2005", number: "530.7"},
+    {year: "2004", number: "563.1"},
+    {year: "2003", number: "460.9"},
+    {year: "2002", number: "442.2"},
+    {year: "2001", number: "529.7"},
+    {year: "2000", number: "610.7"},
+    {year: "1999", number: "442.8"},
+    {year: "1998", number: "311"}
+]
+},
+{
+  county: "Liberty County",
+  values: [
+    {year: "2017", number: "384.1"},
+    {year: "2016", number: "745.6"},
+    {year: "2015", number: "573.4"},
+    {year: "2014", number: "619.3"},
+    {year: "2013", number: "529.5"},
+    {year: "2012", number: "574.5"},
+    {year: "2011", number: "582.5"},
+    {year: "2010", number: "466.6"},
+    {year: "2009", number: "420.1"},
+    {year: "2008", number: "448.7"},
+    {year: "2007", number: "557.6"},
+    {year: "2006", number: "489.6"},
+    {year: "2005", number: "696.8"},
+    {year: "2004", number: "487.7"},
+    {year: "2003", number: "634.1"},
+    {year: "2002", number: "393.6"},
+    {year: "2001", number: "982.4"},
+    {year: "2000", number: "841.1"},
+    {year: "1999", number: "712.7"},
+    {year: "1998", number: "1090.9"}
+]
+},
+{
+  county: "Madison County",
+  values: [
+    {year: "2017", number: "665.8"},
+    {year: "2016", number: "674.3"},
+    {year: "2015", number: "717.1"},
+    {year: "2014", number: "705"},
+    {year: "2013", number: "665.8"},
+    {year: "2012", number: "654.5"},
+    {year: "2011", number: "832.2"},
+    {year: "2010", number: "806.1"},
+    {year: "2009", number: "702.7"},
+    {year: "2008", number: "537.3"},
+    {year: "2007", number: "601.3"},
+    {year: "2006", number: "537"},
+    {year: "2005", number: "603.1"},
+    {year: "2004", number: "525.8"},
+    {year: "2003", number: "464.4"},
+    {year: "2002", number: "460.9"},
+    {year: "2001", number: "399.3"},
+    {year: "2000", number: "435.8"},
+    {year: "1999", number: "425.8"},
+    {year: "1998", number: "414.8"}
+]
+},
+{
+  county: "Mantatee County",
+  values: [
+    {year: "2017", number: "1007.5"},
+    {year: "2016", number: "961.5"},
+    {year: "2015", number: "1008.2"},
+    {year: "2014", number: "859.5"},
+    {year: "2013", number: "855.6"},
+    {year: "2012", number: "887.3"},
+    {year: "2011", number: "865.1"},
+    {year: "2010", number: "769.3"},
+    {year: "2009", number: "686.4"},
+    {year: "2008", number: "577.9"},
+    {year: "2007", number: "577.7"},
+    {year: "2006", number: "571.1"},
+    {year: "2005", number: "543.5"},
+    {year: "2004", number: "561.4"},
+    {year: "2003", number: "611.1"},
+    {year: "2002", number: "673.2"},
+    {year: "2001", number: "651.1"},
+    {year: "2000", number: "775.5"},
+    {year: "1999", number: "749.4"},
+    {year: "1998", number: "773.1"}
+]
+},
+{
+  county: "Marion County",
+  values: [
+    {year: "2017", number: "1018.4"},
+    {year: "2016", number: "855.6"},
+    {year: "2015", number: "833.4"},
+    {year: "2014", number: "774.2"},
+    {year: "2013", number: "715.8"},
+    {year: "2012", number: "792"},
+    {year: "2011", number: "737.4"},
+    {year: "2010", number: "728"},
+    {year: "2009", number: "670.4"},
+    {year: "2008", number: "554.9"},
+    {year: "2007", number: "474.2"},
+    {year: "2006", number: "469.1"},
+    {year: "2005", number: "510"},
+    {year: "2004", number: "402.4"},
+    {year: "2003", number: "417.5"},
+    {year: "2002", number: "386.7"},
+    {year: "2001", number: "402.9"},
+    {year: "2000", number: "424.5"},
+    {year: "1999", number: "475.1"},
+    {year: "1998", number: "462.7"}
+]
+},
+{
+  county: "Martin County",
+  values: [
+    {year: "2017", number: "694.3"},
+    {year: "2016", number: "648.9"},
+    {year: "2015", number: "603.3"},
+    {year: "2014", number: "658.2"},
+    {year: "2013", number: "698.4"},
+    {year: "2012", number: "703.4"},
+    {year: "2011", number: "633.4"},
+    {year: "2010", number: "674.4"},
+    {year: "2009", number: "664.2"},
+    {year: "2008", number: "513.2"},
+    {year: "2007", number: "582.9"},
+    {year: "2006", number: "488.5"},
+    {year: "2005", number: "532.8"},
+    {year: "2004", number: "929.6"},
+    {year: "2003", number: "1038.1"},
+    {year: "2002", number: "1202.8"},
+    {year: "2001", number: "1070"},
+    {year: "2000", number: "856"},
+    {year: "1999", number: "828.4"},
+    {year: "1998", number: "846.5"}
+]
+},
+{
+  county: "Monroe County",
+  values: [
+    {year: "2017", number: "679.8"},
+    {year: "2016", number: "888.3"},
+    {year: "2015", number: "905.2"},
+    {year: "2014", number: "860.1"},
+    {year: "2013", number: "902.1"},
+    {year: "2012", number: "839.7"},
+    {year: "2011", number: "961.8"},
+    {year: "2010", number: "1188.5"},
+    {year: "2009", number: "1187.6"},
+    {year: "2008", number: "1246.9"},
+    {year: "2007", number: "1288.1"},
+    {year: "2006", number: "1338.9"},
+    {year: "2005", number: "1281.6"},
+    {year: "2004", number: "1196.7"},
+    {year: "2003", number: "1194.8"},
+    {year: "2002", number: "1060.4"},
+    {year: "2001", number: "989.3"},
+    {year: "2000", number: "1037.5"},
+    {year: "1999", number: "1049.6"},
+    {year: "1998", number: "941.5"}
+]
+},
+{
+  county: "Nassau County",
+  values: [
+    {year: "2017", number: "655.9"},
+    {year: "2016", number: "579.9"},
+    {year: "2015", number: "656.3"},
+    {year: "2014", number: "723.3"},
+    {year: "2013", number: "868.1"},
+    {year: "2012", number: "787.7"},
+    {year: "2011", number: "697.6"},
+    {year: "2010", number: "675"},
+    {year: "2009", number: "749.1"},
+    {year: "2008", number: "724.3"},
+    {year: "2007", number: "634.8"},
+    {year: "2006", number: "617.6"},
+    {year: "2005", number: "728"},
+    {year: "2004", number: "833.9"},
+    {year: "2003", number: "754.4"},
+    {year: "2002", number: "769.8"},
+    {year: "2001", number: "850.5"},
+    {year: "2000", number: "741.2"},
+    {year: "1999", number: "633.5"},
+    {year: "1998", number: "728.4"}
+]
+},
+{
+  county: "Okaloosa County",
+  values: [
+    {year: "2017", number: "1110.4"},
+    {year: "2016", number: "1084.4"},
+    {year: "2015", number: "1107.1"},
+    {year: "2014", number: "1157"},
+    {year: "2013", number: "1071.9"},
+    {year: "2012", number: "881.8"},
+    {year: "2011", number: "786.1"},
+    {year: "2010", number: "751.1"},
+    {year: "2009", number: "735.2"},
+    {year: "2008", number: "715.5"},
+    {year: "2007", number: "677.8"},
+    {year: "2006", number: "603.2"},
+    {year: "2005", number: "677.9"},
+    {year: "2004", number: "677.4"},
+    {year: "2003", number: "668.2"},
+    {year: "2002", number: "652.3"},
+    {year: "2001", number: "708.3"},
+    {year: "2000", number: "716"},
+    {year: "1999", number: "706.9"},
+    {year: "1998", number: "718"}
+]
+},
+{
+  county: "Okeechobee County",
+  values: [
+    {year: "2017", number: "535.2"},
+    {year: "2016", number: "523.8"},
+    {year: "2015", number: "601.7"},
+    {year: "2014", number: "465.4"},
+    {year: "2013", number: "566.7"},
+    {year: "2012", number: "563"},
+    {year: "2011", number: "513.1"},
+    {year: "2010", number: "614.1"},
+    {year: "2009", number: "576"},
+    {year: "2008", number: "491"},
+    {year: "2007", number: "558.1"},
+    {year: "2006", number: "498.1"},
+    {year: "2005", number: "579.6"},
+    {year: "2004", number: "762.9"},
+    {year: "2003", number: "712.2"},
+    {year: "2002", number: "716.1"},
+    {year: "2001", number: "621.2"},
+    {year: "2000", number: "477.7"},
+    {year: "1999", number: "498.2"},
+    {year: "1998", number: "540.1"}
+]
+},
+{
+  county: "Pasco County",
+  values: [
+    {year: "2017", number: "1288.9"},
+    {year: "2016", number: "1333.3"},
+    {year: "2015", number: "1465.6"},
+    {year: "2014", number: "1453.7"},
+    {year: "2013", number: "1480"},
+    {year: "2012", number: "1442.1"},
+    {year: "2011", number: "1416.5"},
+    {year: "2010", number: "1109.5"},
+    {year: "2009", number: "757.6"},
+    {year: "2008", number: "687.4"},
+    {year: "2007", number: "643.9"},
+    {year: "2006", number: "654.9"},
+    {year: "2005", number: "701.4"},
+    {year: "2004", number: "845.4"},
+    {year: "2003", number: "842.1"},
+    {year: "2002", number: "899.1"},
+    {year: "2001", number: "808.2"},
+    {year: "2000", number: "620.1"},
+    {year: "1999", number: "666.9"},
+    {year: "1998", number: "735.2"}
+]
+},
+{
+  county: "Pinellas County",
+  values: [
+    {year: "2017", number: "1279.3"},
+    {year: "2016", number: "1354.4"},
+    {year: "2015", number: "1193.3"},
+    {year: "2014", number: "1166.2"},
+    {year: "2013", number: "1066.9"},
+    {year: "2012", number: "1060"},
+    {year: "2011", number: "997.5"},
+    {year: "2010", number: "971.9"},
+    {year: "2009", number: "877.5"},
+    {year: "2008", number: "868.5"},
+    {year: "2007", number: "804.5"},
+    {year: "2006", number: "883.7"},
+    {year: "2005", number: "971.6"},
+    {year: "2004", number: "976.7"},
+    {year: "2003", number: "944.4"},
+    {year: "2002", number: "949.8"},
+    {year: "2001", number: "930.3"},
+    {year: "2000", number: "876.5"},
+    {year: "1999", number: "881.2"},
+    {year: "1998", number: "891.7"}
+]
+},
+{
+  county: "Polk County",
+  values: [
+    {year: "2017", number: "989"},
+    {year: "2016", number: "965"},
+    {year: "2015", number: "945.6"},
+    {year: "2014", number: "940.6"},
+    {year: "2013", number: "957"},
+    {year: "2012", number: "912.5"},
+    {year: "2011", number: "922.7"},
+    {year: "2010", number: "829.3"},
+    {year: "2009", number: "736.7"},
+    {year: "2008", number: "658.7"},
+    {year: "2007", number: "619"},
+    {year: "2006", number: "600.8"},
+    {year: "2005", number: "627.7"},
+    {year: "2004", number: "585.5"},
+    {year: "2003", number: "596.3"},
+    {year: "2002", number: "581.3"},
+    {year: "2001", number: "586.1"},
+    {year: "2000", number: "562.8"},
+    {year: "1999", number: "639.8"},
+    {year: "1998", number: "689.6"}
+]
+},
+{
+  county: "Putnam County",
+  values: [
+    {year: "2017", number: "951.6"},
+    {year: "2016", number: "783.8"},
+    {year: "2015", number: "840.2"},
+    {year: "2014", number: "685.9"},
+    {year: "2013", number: "631"},
+    {year: "2012", number: "667.3"},
+    {year: "2011", number: "658"},
+    {year: "2010", number: "633.9"},
+    {year: "2009", number: "592.2"},
+    {year: "2008", number: "606.2"},
+    {year: "2007", number: "575.7"},
+    {year: "2006", number: "617.6"},
+    {year: "2005", number: "645.3"},
+    {year: "2004", number: "615.8"},
+    {year: "2003", number: "643.5"},
+    {year: "2002", number: "632.7"},
+    {year: "2001", number: "788.3"},
+    {year: "2000", number: "898.2"},
+    {year: "1999", number: "669.3"},
+    {year: "1998", number: "778.7"}
+]
+},
+{
+  county: "St. Johns County",
+  values: [
+    {year: "2017", number: "798.6"},
+    {year: "2016", number: "758.3"},
+    {year: "2015", number: "769.7"},
+    {year: "2014", number: "761.3"},
+    {year: "2013", number: "743.5"},
+    {year: "2012", number: "829.3"},
+    {year: "2011", number: "837.8"},
+    {year: "2010", number: "764"},
+    {year: "2009", number: "734"},
+    {year: "2008", number: "778.8"},
+    {year: "2007", number: "741.3"},
+    {year: "2006", number: "655.6"},
+    {year: "2005", number: "538.5"},
+    {year: "2004", number: "671.7"},
+    {year: "2003", number: "763"},
+    {year: "2002", number: "858.1"},
+    {year: "2001", number: "845"},
+    {year: "2000", number: "823.3"},
+    {year: "1999", number: "856.9"},
+    {year: "1998", number: "842.7"}
+]
+},
+{
+  county: "St. Lucie County",
+  values: [
+    {year: "2017", number: "978"},
+    {year: "2016", number: "905.8"},
+    {year: "2015", number: "980.9"},
+    {year: "2014", number: "916.4"},
+    {year: "2013", number: "936.7"},
+    {year: "2012", number: "929.1"},
+    {year: "2011", number: "808.3"},
+    {year: "2010", number: "820.2"},
+    {year: "2009", number: "793.5"},
+    {year: "2008", number: "787.4"},
+    {year: "2007", number: "796.4"},
+    {year: "2006", number: "757.3"},
+    {year: "2005", number: "765.5"},
+    {year: "2004", number: "1035.5"},
+    {year: "2003", number: "1151.6"},
+    {year: "2002", number: "1201.7"},
+    {year: "2001", number: "1001.7"},
+    {year: "2000", number: "939.1"},
+    {year: "1999", number: "846.6"},
+    {year: "1998", number: "892.6"}
+]
+},
+{
+  county: "Santa Rosa County",
+  values: [
+    {year: "2017", number: "1040.3"},
+    {year: "2016", number: "1079.8"},
+    {year: "2015", number: "1062.9"},
+    {year: "2014", number: "976.3"},
+    {year: "2013", number: "1017.1"},
+    {year: "2012", number: "975.6"},
+    {year: "2011", number: "864.4"},
+    {year: "2010", number: "817.9"},
+    {year: "2009", number: "731.5"},
+    {year: "2008", number: "702.8"},
+    {year: "2007", number: "626.5"},
+    {year: "2006", number: "667.8"},
+    {year: "2005", number: "636.7"},
+    {year: "2004", number: "588.6"},
+    {year: "2003", number: "565.9"},
+    {year: "2002", number: "595.7"},
+    {year: "2001", number: "611.6"},
+    {year: "2000", number: "580.9"},
+    {year: "1999", number: "503.1"},
+    {year: "1998", number: "513.4"}
+]
+},
+{
+  county: "Sarasota County",
+  values: [
+    {year: "2017", number: "763"},
+    {year: "2016", number: "801.3"},
+    {year: "2015", number: "924.9"},
+    {year: "2014", number: "909.6"},
+    {year: "2013", number: "824.9"},
+    {year: "2012", number: "769.9"},
+    {year: "2011", number: "768.2"},
+    {year: "2010", number: "699.6"},
+    {year: "2009", number: "569.1"},
+    {year: "2008", number: "569"},
+    {year: "2007", number: "540.6"},
+    {year: "2006", number: "556.1"},
+    {year: "2005", number: "584.2"},
+    {year: "2004", number: "553.7"},
+    {year: "2003", number: "573.8"},
+    {year: "2002", number: "811.7"},
+    {year: "2001", number: "748.5"},
+    {year: "2000", number: "651.7"},
+    {year: "1999", number: "600.9"},
+    {year: "1998", number: "608.6"}
+]
+},
+{
+  county: "Sumter County",
+  values: [
+    {year: "2017", number: "748.5"},
+    {year: "2016", number: "696.4"},
+    {year: "2015", number: "742.1"},
+    {year: "2014", number: "907.3"},
+    {year: "2013", number: "770.4"},
+    {year: "2012", number: "732.7"},
+    {year: "2011", number: "745.6"},
+    {year: "2010", number: "780.2"},
+    {year: "2009", number: "534.3"},
+    {year: "2008", number: "461.3"},
+    {year: "2007", number: "473.5"},
+    {year: "2006", number: "527.5"},
+    {year: "2005", number: "441.6"},
+    {year: "2004", number: "527.4"},
+    {year: "2003", number: "470.1"},
+    {year: "2002", number: "469.4"},
+    {year: "2001", number: "751.5"},
+    {year: "2000", number: "588.4"},
+    {year: "1999", number: "518.1"},
+    {year: "1998", number: "666.6"}
+]
+},
+{
+  county: "Suwanee County",
+  values: [
+    {year: "2017", number: "530.9"},
+    {year: "2016", number: "596.6"},
+    {year: "2015", number: "683.3"},
+    {year: "2014", number: "557.6"},
+    {year: "2013", number: "480.9"},
+    {year: "2012", number: "507.5"},
+    {year: "2011", number: "448"},
+    {year: "2010", number: "412"},
+    {year: "2009", number: "452.2"},
+    {year: "2008", number: "400.4"},
+    {year: "2007", number: "391.5"},
+    {year: "2006", number: "490.3"},
+    {year: "2005", number: "636.3"},
+    {year: "2004", number: "501.3"},
+    {year: "2003", number: "432.4"},
+    {year: "2002", number: "629.5"},
+    {year: "2001", number: "657.5"},
+    {year: "2000", number: "678.7"},
+    {year: "1999", number: "651.8"},
+    {year: "1998", number: "557.8"}
+]
+},
+{
+  county: "Taylor County",
+  values: [
+    {year: "2017", number: "554.3"},
+    {year: "2016", number: "639"},
+    {year: "2015", number: "641.3"},
+    {year: "2014", number: "557.5"},
+    {year: "2013", number: "483.2"},
+    {year: "2012", number: "575.5"},
+    {year: "2011", number: "633.8"},
+    {year: "2010", number: "581"},
+    {year: "2009", number: "502.7"},
+    {year: "2008", number: "490"},
+    {year: "2007", number: "636.7"},
+    {year: "2006", number: "574"},
+    {year: "2005", number: "550.8"},
+    {year: "2004", number: "662.6"},
+    {year: "2003", number: "707.1"},
+    {year: "2002", number: "589.2"},
+    {year: "2001", number: "699.3"},
+    {year: "2000", number: "610.6"},
+    {year: "1999", number: "443.7"},
+    {year: "1998", number: "449.3"}
+]
+},
+{
+  county: "Union County",
+  values: [
+    {year: "2017", number: "656.9"},
+    {year: "2016", number: "631.4"},
+    {year: "2015", number: "469.9"},
+    {year: "2014", number: "483.7"},
+    {year: "2013", number: "458"},
+    {year: "2012", number: "572.6"},
+    {year: "2011", number: "466.6"},
+    {year: "2010", number: "461.6"},
+    {year: "2009", number: "463.2"},
+    {year: "2008", number: "265.1"},
+    {year: "2007", number: "236.5"},
+    {year: "2006", number: "438.2"},
+    {year: "2005", number: "422.6"},
+    {year: "2004", number: "452.8"},
+    {year: "2003", number: "439.3"},
+    {year: "2002", number: "363.4"},
+    {year: "2001", number: "391"},
+    {year: "2000", number: "441.4"},
+    {year: "1999", number: "422"},
+    {year: "1998", number: "604.4"}
+]
+},
+{
+  county: "Volusia County",
+  values: [
+    {year: "2017", number: "939.4"},
+    {year: "2016", number: "932.2"},
+    {year: "2015", number: "940.8"},
+    {year: "2014", number: "960"},
+    {year: "2013", number: "989.1"},
+    {year: "2012", number: "863.6"},
+    {year: "2011", number: "884.5"},
+    {year: "2010", number: "855.1"},
+    {year: "2009", number: "758.8"},
+    {year: "2008", number: "701"},
+    {year: "2007", number: "706.3"},
+    {year: "2006", number: "721.5"},
+    {year: "2005", number: "726.7"},
+    {year: "2004", number: "759.5"},
+    {year: "2003", number: "745.4"},
+    {year: "2002", number: "901.8"},
+    {year: "2001", number: "980.8"},
+    {year: "2000", number: "857.6"},
+    {year: "1999", number: "747.2"},
+    {year: "1998", number: "678.6"}
+]
+},
+{
+  county: "Wakulla County",
+  values: [
+    {year: "2017", number: "812.9"},
+    {year: "2016", number: "790.8"},
+    {year: "2015", number: "810.7"},
+    {year: "2014", number: "785.3"},
+    {year: "2013", number: "726.3"},
+    {year: "2012", number: "696"},
+    {year: "2011", number: "703.9"},
+    {year: "2010", number: "747.4"},
+    {year: "2009", number: "740.2"},
+    {year: "2008", number: "577.8"},
+    {year: "2007", number: "545.6"},
+    {year: "2006", number: "545.1"},
+    {year: "2005", number: "1224.2"},
+    {year: "2004", number: "1267.7"},
+    {year: "2003", number: "751.8"},
+    {year: "2002", number: "750.6"},
+    {year: "2001", number: "750.1"},
+    {year: "2000", number: "845.4"},
+    {year: "1999", number: "702.7"},
+    {year: "1998", number: "870.5"}
+]
+},
+{
+  county: "Walton County",
+  values: [
+    {year: "2017", number: "799.3"},
+    {year: "2016", number: "626.7"},
+    {year: "2015", number: "736.2"},
+    {year: "2014", number: "693.9"},
+    {year: "2013", number: "757.3"},
+    {year: "2012", number: "565"},
+    {year: "2011", number: "521.2"},
+    {year: "2010", number: "571.5"},
+    {year: "2009", number: "558"},
+    {year: "2008", number: "523.7"},
+    {year: "2007", number: "515.2"},
+    {year: "2006", number: "548.8"},
+    {year: "2005", number: "405.8"},
+    {year: "2004", number: "441.4"},
+    {year: "2003", number: "370.1"},
+    {year: "2002", number: "417.2"},
+    {year: "2001", number: "446.5"},
+    {year: "2000", number: "569.1"},
+    {year: "1999", number: "530.6"},
+    {year: "1998", number: "538.1"}
+]
+},
+{
+  county: "Washington County",
+  values: [
+    {year: "2017", number: "606"},
+    {year: "2016", number: "564.2"},
+    {year: "2015", number: "669.9"},
+    {year: "2014", number: "543.3"},
+    {year: "2013", number: "519.3"},
+    {year: "2012", number: "505.3"},
+    {year: "2011", number: "629"},
+    {year: "2010", number: "578.7"},
+    {year: "2009", number: "741.6"},
+    {year: "2008", number: "625.4"},
+    {year: "2007", number: "595.5"},
+    {year: "2006", number: "676.9"},
+    {year: "2005", number: "659.8"},
+    {year: "2004", number: "619.7"},
+    {year: "2003", number: "637.9"},
+    {year: "2002", number: "642.5"},
+    {year: "2001", number: "739.3"},
+    {year: "2000", number: "691"},
+    {year: "1999", number: "518.1"},
+    {year: "1998", number: "545"}
+]
+}
+
+
+    ];
+
+    var width = 800;
+    var height = 550;
+    var margin = 50;
+    var duration = 250;
+
+    var lineOpacity = "0.25";
+    var lineOpacityHover = "0.85";
+    var otherLinesOpacityHover = "0.1";
+    var lineStroke = "1.5px";
+    var lineStrokeHover = "2.5px";
+
+
+    /* Format Data */
+    var parseyear = d3.timeParse("%Y");
+    data.forEach(function(d) {
+      d.values.forEach(function(d) {
+        d.year = parseyear(d.year);
+        d.number = +d.number;
+      });
+    });
+
+
+    /* Scale */
+    var xScale = d3.scaleTime()
+      .domain(d3.extent(data[0].values, d => d.year))
+      .range([0, width-margin]);
+
+    var yScale = d3.scaleLinear()
+      .domain([0, d3.max(data[0].values, d => d.number)])
+      .range([height-margin, 0]);
+
+    var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+    /* Add SVG */
+    var svg = d3.select("#chart").append("svg")
+      .attr("width", 850)
+      .attr("height", 600)
+      .append('g')
+      .attr("transform", `translate(${margin}, ${margin})`);
+
+
+    /* Add line into SVG */
+    var line = d3.line()
+      .x(d => xScale(d.year))
+      .y(d => yScale(d.number));
+
+    let lines = svg.append('g')
+      .attr('class', 'lines');
+
+    lines.selectAll('.line-group')
+      .data(data).enter()
+      .append('g')
+      .attr('class', 'line-group')
+      .on("mouseover", function(d, i) {
+          svg.append("text")
+            .attr("class", "title-text")
+            .style("fill", color(i))
+            .text(d.county)
+            .attr("text-anchor", "middle")
+            .attr("x", (width-margin)/8)
+            .attr("y", (5));
+        })
+      .on("mouseout", function(d) {
+          svg.select(".title-text").remove();
+        })
+      .append('path')
+      .attr('class', 'line')
+      .attr('d', d => line(d.values))
+      .style('stroke', (d, i) => color(i))
+      .style('opacity', lineOpacity)
+      .on("mouseover", function(d) {
+          d3.select(this)
+            .style('opacity', lineOpacityHover)
+            .style("stroke-width", lineStrokeHover)
+        })
+      .on("mouseout", function(d) {
+          d3.selectAll(".line")
+    					.style('opacity', lineOpacity);
+          d3.select(this)
+            .style("stroke-width", lineStroke)
+        });
+
+/* `Axis */
+    var xAxis = d3.axisBottom(xScale).ticks(7);
+    var yAxis = d3.axisLeft(yScale).ticks(7);
+
+    svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", `translate(0, ${height-margin})`)
+      .call(xAxis)
+
+    svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+      .append('text')
+      .attr("y", -43)
+      .attr("x", -120)
+      .attr("transform", "rotate(-90)")
+      .attr("fill", "#000")
+      .text("Number hospitalized per 100,000 people");
+
+/*vertical line */
+/*svg.append("line")
+.attr("x1", "237")
+.attr("y1", "0")
+.attr("x2", "237")
+.attr("y2", "450")
+.attr("stroke-width", 1)
+.attr("stroke", "black")
+.attr("stroke-dasharray", 2);
+
+
+svg.append("line")
+.attr("x1", "280")
+.attr("y1", "0")
+.attr("x2", "280")
+.attr("y2", "450")
+.attr("stroke-width", 1)
+.attr("stroke", "black")
+.attr("stroke-dasharray", 2);
+
+      svg.append("line")
+      .attr("x1", "395")
+      .attr("y1", "0")
+      .attr("x2", "395")
+      .attr("y2", "450")
+      .attr("stroke-width", 1)
+      .attr("stroke", "black")
+      .attr("stroke-dasharray", 2);
+
+      svg.append("line")
+      .attr("x1", "475")
+      .attr("y1", "0")
+      .attr("x2", "475")
+      .attr("y2", "450")
+      .attr("stroke-width", 1)
+      .attr("stroke", "black")
+      .attr("stroke-dasharray", 2);
+
+
+      svg.append("text")
+             .attr("x", 220)
+             .attr("y", 30)
+             .text("1");
+
+
+                   svg.append("text")
+                          .attr("x", 265)
+                          .attr("y", 30)
+                          .text("2");
+
+                          svg.append("text")
+                                 .attr("x", 380)
+                                 .attr("y", 30)
+                                 .text("3");
+
+                                 svg.append("text")
+                                        .attr("x", 460)
+                                        .attr("y", 30)
+                                        .text("4");*/
+    </script>
+  </div>
+
+  <div class="grid-container">
+    <div class="map"></div>
+    <div class="map2"></div>
+    <div class="map3"></div>
+  </div>
+<script>
+d3.json("data/fl.json").then(function(flMap) {
+      d3.csv("data/1998.csv").then(function(data) {
+        d3.csv("data/cities.csv").then(function(places) {
+
+          var flFeatures = flMap.features;
+
+          data.forEach(function(d) {
+            var countyName = d.county;
+            var population = +d.pop;
+
+            flFeatures.forEach(function(u) {
+              var flCounty = u.properties.NAME;
+              if (flCounty == countyName) {
+                u.properties.pop = population;
+              }
+            });
+          });
+          places.forEach(function(p) {
+            p.longitude = +p.longitude;
+            p.latitude = +p.latitude;
+          });
+
+          var svg = d3.select(".map").append("svg");
+          var w = 400, h = 500;
+          svg.attr("width", w)
+             .attr("height", h);
+
+          var projection = d3.geoAlbersUsa()
+          .translate([-400, -250])
+          .scale(3100);
+          var path = d3.geoPath().projection(projection);
+          var colors = d3.scaleQuantize()
+                         .domain(d3.extent(flFeatures, function(d) { return d.properties.pop; }))
+                         .range(["#e5f4e0", "#cae4c0", "#aacf9d",
+                                 "#87b476", "#6c9e5a", "#548741",
+                                 "#40722d", "#2e5c1d", "#1e4410",
+                                 "#102a07", "#071602"]);
+
+          svg.selectAll("path")
+             .data(flFeatures)
+             .enter()
+             .append("path")
+             .attr("d", path)
+             .attr("fill", function(d) {
+               if(d.properties.pop) {
+                 return colors(d.properties.pop);
+               } else {
+                 return "#ccc";
+               }
+             })
+             .attr("stroke", "#fff")
+             .attr("stroke-width", ".5px");
+
+          // Plot
+        /*  svg.selectAll("circle")
+             .data(places)
+             .enter()
+             .append("circle")
+             .attr("cx", function(d) {
+               if(projection([d.longitude, d.latitude])) {
+                 return projection([d.longitude, d.latitude])[0]
+               }
+             })
+             .attr("cy", function(d) {
+               if(projection([d.longitude, d.latitude])) {
+                 return projection([d.longitude, d.latitude])[1]
+               }
+             })
+             .attr("r", 3);*/
+
+
+
+        });
+      });
+    });
+
+
+  </script>
+<script>
+d3.json("data/fl.json").then(function(flMap) {
+      d3.csv("data/2000.csv").then(function(data) {
+        d3.csv("data/cities.csv").then(function(places) {
+
+          var flFeatures = flMap.features;
+
+          data.forEach(function(d) {
+            var countyName = d.county;
+            var population = +d.pop;
+
+            flFeatures.forEach(function(u) {
+              var flCounty = u.properties.NAME;
+              if (flCounty == countyName) {
+                u.properties.pop = population;
+              }
+            });
+          });
+
+          places.forEach(function(p) {
+            p.longitude = +p.longitude;
+            p.latitude = +p.latitude;
+          });
+
+          var svg = d3.select(".map2").append("svg");
+          var w = 400, h = 500;
+          svg.attr("width", w)
+             .attr("height", h);
+
+          var projection = d3.geoAlbersUsa()
+          .translate([-400, -250])
+          .scale(3100);
+
+          var path = d3.geoPath().projection(projection);
+          var colors = d3.scaleQuantize()
+                         .domain(d3.extent(flFeatures, function(d) { return d.properties.pop; }))
+                         .range(["#e5f4e0", "#cae4c0", "#aacf9d",
+                                 "#87b476", "#6c9e5a", "#548741",
+                                 "#40722d", "#2e5c1d", "#1e4410",
+                                 "#102a07", "#071602"]);
+
+          svg.selectAll("path")
+             .data(flFeatures)
+             .enter()
+             .append("path")
+             .attr("d", path)
+             .attr("fill", function(d) {
+               if(d.properties.pop) {
+                 return colors(d.properties.pop);
+               } else {
+                 return "#ccc";
+               }
+             })
+             .attr("stroke", "#fff")
+             .attr("stroke-width", ".5px");
+
+          // Plot
+        /*  svg.selectAll("circle")
+             .data(places)
+             .enter()
+             .append("circle")
+             .attr("cx", function(d) {
+               if(projection([d.longitude, d.latitude])) {
+                 return projection([d.longitude, d.latitude])[0]
+               }
+             })
+             .attr("cy", function(d) {
+               if(projection([d.longitude, d.latitude])) {
+                 return projection([d.longitude, d.latitude])[1]
+               }
+             })
+             .attr("r", 3);*/
+
+        });
+      });
+    });
+
+  </script>
+  <script>
+  d3.json("data/fl.json").then(function(flMap) {
+        d3.csv("data/1998.csv").then(function(data) {
+          d3.csv("data/cities.csv").then(function(places) {
+
+            var flFeatures = flMap.features;
+
+            data.forEach(function(d) {
+              var countyName = d.county;
+              var population = +d.pop;
+
+              flFeatures.forEach(function(u) {
+                var flCounty = u.properties.NAME;
+                if (flCounty == countyName) {
+                  u.properties.pop = population;
+                }
+              });
+            });
+            places.forEach(function(p) {
+              p.longitude = +p.longitude;
+              p.latitude = +p.latitude;
+            });
+
+            var svg = d3.select(".map3").append("svg");
+            var w = 400, h = 500;
+            svg.attr("width", w)
+               .attr("height", h);
+
+            var projection = d3.geoAlbersUsa()
+            .translate([-400, -250])
+            .scale(3100);
+            var path = d3.geoPath().projection(projection);
+            var colors = d3.scaleQuantize()
+                           .domain(d3.extent(flFeatures, function(d) { return d.properties.pop; }))
+                           .range(["#e5f4e0", "#cae4c0", "#aacf9d",
+                                   "#87b476", "#6c9e5a", "#548741",
+                                   "#40722d", "#2e5c1d", "#1e4410",
+                                   "#102a07", "#071602"]);
+
+            svg.selectAll("path")
+               .data(flFeatures)
+               .enter()
+               .append("path")
+               .attr("d", path)
+               .attr("fill", function(d) {
+                 if(d.properties.pop) {
+                   return colors(d.properties.pop);
+                 } else {
+                   return "#ccc";
+                 }
+               })
+               .attr("stroke", "#fff")
+               .attr("stroke-width", ".5px");
+
+            // Plot
+          /*  svg.selectAll("circle")
+               .data(places)
+               .enter()
+               .append("circle")
+               .attr("cx", function(d) {
+                 if(projection([d.longitude, d.latitude])) {
+                   return projection([d.longitude, d.latitude])[0]
+                 }
+               })
+               .attr("cy", function(d) {
+                 if(projection([d.longitude, d.latitude])) {
+                   return projection([d.longitude, d.latitude])[1]
+                 }
+               })
+               .attr("r", 3);*/
+
+
+
+          });
+        });
+      });
+
+
+    </script>
+  </body>
+</html>
