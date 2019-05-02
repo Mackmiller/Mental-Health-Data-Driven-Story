@@ -23,7 +23,8 @@
     <div id="chart">
 
     <script src="js/d3.min.js"></script>
-
+    <div id="d3id" ></div>
+    
     <script>
     var data = [
       {
@@ -1749,8 +1750,12 @@
   </div>
   <h2>HIGHEST TOTAL NUMBER OF HOSPITALIZATIONS: INDIAN RIVER.</h2>
   <p>
-Indian River County is located on the eastern coast of Florida and has an<a href="https://www.census.gov/quickfacts/fact/table/indianrivercountyflorida/PST045218"> estimated population</a> of 157,413 people. It is widely known for being home to the cities of Vero Beach, Sebastian, and Fellsmere. Between 1998 and 2017 there were 23,839 hospitalizations related to mental health. The <a href="https://www.census.gov/quickfacts/fact/table/indianrivercountyflorida/PST045218"> largest industries </a>in Indian River County are retail, healthcare and construction. The most common jobs held by residents are office and administrative support, sales, and management. 83% of the population has health coverage, which could contribute to why such a high number of people resorted to hospital treatment.</p>
+Indian River County is located on the eastern coast of Florida and has an <a href="https://www.census.gov/quickfacts/fact/table/indianrivercountyflorida/PST045218">estimated population</a> of 157,413 people. It is widely known for being home to the cities of Vero Beach, Sebastian, and Fellsmere. Between 1998 and 2017 there were 23,839 hospitalizations related to mental health. The <a href="https://www.census.gov/quickfacts/fact/table/indianrivercountyflorida/PST045218">largest industries</a> in Indian River County are retail, healthcare and construction. The most common jobs held by residents are office and administrative support, sales, and management. 83% of the population has health coverage, which could contribute to why such a high number of people resorted to hospital treatment.</p>
 <h2>LOWEST TOTAL NUMBER OF HOSPITALIZATIONS: GLADES.</h2>
+<p>Glades County has an<a href="https://www.census.gov/quickfacts/fact/table/gladescountyflorida,indianrivercountyflorida/PST045218">
+estimated population</a> of 13,724 residents, making it one of the lowest populated counties in the state. The <a href="https://datausa.io/profile/geo/glades-county-fl/">largest industries</a> are agriculture, forestry, fishing & hunting, retail and education. 18% of the population is believed to live below the national poverty line of 13.4%. 78.4% of the population has health coverage.
+
+</p>
 <p>
 Another way to visualize the change in mental health hospitalizations throughout the state of Florida is by visually seeing the state. Three years evenly spread out from the data set (1998, 2008, 2017) are displayed. The darker the shade of green, the more hospitalizations have occurred for that particular county compared to surrounding areas.   </p>
 
@@ -1959,8 +1964,141 @@ d3.json("data/fl.json").then(function(flMap) {
           });
         });
       });
-
-
     </script>
+    <script>
+
+    d3.csv("data/unemployment_rate.csv").then(function(data) {
+
+      var timeParser = d3.timeParse("%Y-%m-%d");
+
+      data.forEach(function(d) {
+        d.date = timeParser(d.date);
+        d.unrate = +d.unrate;
+      });
+
+      var w = window.innerWidth,
+          h = window.innerHeight;
+
+      var margin = {
+        top: 60,
+        right: 60,
+        bottom: 60,
+        left: 60
+      };
+
+
+      var svg = d3.select("body").append("svg");
+
+      svg.attr("width", w - margin.right)
+         .attr("height", h);
+
+
+
+      var xScale = d3.scaleTime()
+        .domain(d3.extent(data, function(d) { return d.date } ))
+        .range([0, (w - margin.left - margin.right)]);
+
+      var yScale = d3.scaleLinear()
+        .domain(d3.extent(data, function(d) { return d.unrate }))
+        .range([(h - margin.top - margin.bottom), 0])
+
+
+
+      // THIS is the main difference between a line chart and an area
+      // chart: The area chart uses the area() method and includes a
+      // method which sets up the y0 value -- use the first data
+      // point in the yScale range. (Also, change the style for this
+      // line to have a fill. See the stylesheet above for details.)
+      var line = d3.area()
+        .x(function(d) { return xScale(d.date) })
+        .y0(function(d) { return yScale.range()[0]; })
+        .y1(function(d) { return yScale(d.unrate) });
+
+      svg.append("g")
+         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+         .append("path")
+         .datum(data)
+         .attr("class", "data-line")
+         .attr("d", line);
+
+
+
+      var xAxis = d3.axisBottom()
+        .scale(xScale)
+        .ticks(10);
+
+      var yAxis = d3.axisLeft()
+        .scale(yScale)
+        .ticks(10);
+
+      svg.append("g")
+        .attr("transform", "translate(" + margin.left + "," + (h - margin.bottom) + ")")
+        .attr("class", "xaxis")
+        .call(xAxis);
+
+      svg.append("g")
+         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+         .attr("class", "yaxis")
+         .call(yAxis);
+
+
+      var mean = d3.mean(data, function(d) { return d.unrate });
+
+      svg.append("line")
+         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+         .attr("class", "mean-line")
+         .attr("x1", 0)
+         .attr("x2", (w - margin.left - margin.right))
+         .attr("y1", yScale(mean))
+         .attr("y2", yScale(mean));
+
+      svg.append("text")
+         .attr("x", 20)
+         .attr("y", yScale(mean))
+         .attr("transform", "translate(" + (margin.left + 5) + "," + (margin.top - 5) + ")")
+         .text("Mean Unemployment Rate: " + mean.toPrecision(2))
+
+
+
+      var maxRate = data.filter(function(d) {
+
+        var max = d3.max(data, function(d) { return d.unrate });
+
+        if(d.unrate == max) {
+          return d.unrate;
+        }
+      });
+
+      svg.selectAll("circle")
+         .data(maxRate)
+         .enter()
+         .append("circle")
+         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+         .attr("cx", function(d) { return xScale(d.date) } )
+         .attr("cy", function(d) { return yScale(d.unrate) } )
+         .attr("r", 2);
+
+
+      var maxRateX = xScale(maxRate[0].date),
+          maxRateY = yScale(maxRate[0].unrate);
+
+      svg.append("line")
+         .attr("class", "note-line")
+         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+         .attr("x1", (maxRateX + 3))
+         .attr("x2", (maxRateX + 13))
+         .attr("y1", (maxRateY - 3))
+         .attr("y2", (maxRateY - 13));
+
+      svg.append("text")
+         .text("Highest Unemployment Rate, " + maxRate[0].unrate + " percent")
+         .attr("x", (maxRateX + 14))
+         .attr("y", (maxRateY - 14))
+         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    });
+
+  </script>
+
   </body>
 </html>
