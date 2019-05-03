@@ -17,11 +17,11 @@
     <p>
       All of these numbers are increases from years previous at the national level. Where does Florida stand in these efforts? According to the same report, Florida is high up at rank no. 10 in mental health problems and substance use problems and is also ranked 44 in how easy it is to access mental health care. Yikes.
     </p>
-
+<h2>WHAT ABOUT FLORIDA?</h2>
     <p>
       Florida consists of 67 established counties which each handle mental health differently as population strongly affects resources available to treat mental health conditions, including hospitals, private practices and school resources. This project explores the number of hospitalizations that are the result of mental health concerns in each county 1998-2017. Explore the graph below by hovering over different colored lines- what does your county do over time?
     </p>
-    <div id="chart">
+    <div id="chart"></div>
 
     <script src="js/d3.min.js"></script>
 
@@ -1746,10 +1746,10 @@
       .text("Psychiatric hospitalization rates in Florida have generally increased 1998-2017");
 
 </script>
-  </div>
+
   <h2>HIGHEST RATE OF HOSPITALIZATIONS: INDIAN RIVER.</h2>
   <p>
-Indian River County is located on the eastern coast of Florida and has an <a href="https://www.census.gov/quickfacts/fact/table/indianrivercountyflorida/PST045218">estimated population</a> of 157,413 people. It is widely known for being home to the cities of Vero Beach, Sebastian, and Fellsmere. Between 1998 and 2017 there were 23,839 hospitalizations related to mental health. The <a href="https://www.census.gov/quickfacts/fact/table/indianrivercountyflorida/PST045218">largest industries</a> in Indian River County are retail, healthcare and construction. The most common jobs held by residents are office and administrative support, sales, and management. 83% of the population has health coverage, which could contribute to why such a high number of people resorted to hospital treatment.</p>
+Indian River County reached the peak rate of mental health hospitalizations in 2012. It is located on the eastern coast of Florida and has an <a href="https://www.census.gov/quickfacts/fact/table/indianrivercountyflorida/PST045218">estimated population</a> of 157,413 people. It is widely known for being home to the cities of Vero Beach, Sebastian, and Fellsmere. Between 1998 and 2017 there were 23,839 hospitalizations related to mental health. The <a href="https://www.census.gov/quickfacts/fact/table/indianrivercountyflorida/PST045218">largest industries</a> in Indian River County are retail, healthcare and construction. The most common jobs held by residents are office and administrative support, sales, and management. 83% of the population has health coverage, which could contribute to why such a high number of people resorted to hospital treatment.</p>
 <h2>LOWEST RATE NUMBER OF HOSPITALIZATIONS: GLADES.</h2>
 <p>Glades County has an<a href="https://www.census.gov/quickfacts/fact/table/gladescountyflorida,indianrivercountyflorida/PST045218">
 estimated population</a> of 13,724 residents, making it one of the lowest populated counties in the state. The <a href="https://datausa.io/profile/geo/glades-county-fl/">largest industries</a> are agriculture, forestry, fishing & hunting, retail and education. 18% of the population is believed to live below the national poverty line of 13.4%. 78.4% of the population has health coverage.
@@ -1767,16 +1767,18 @@ Another way to visualize the rate of mental health hospitalizations throughout t
     <p class = "titles">2017</p></div>
   </div>
   <h2>AREAS THAT STAYED DARK</h2>
-  <p>Areas that continued to have a higher rate of hospitalization over the span of 19 years included counties Escambia, Pinellas, Paml Beach, Broward, Miami-Dade, Hernando, Bay and Indian River. These areas could be accounted for due to their close proximity to an urban center. Pensacola is located in Escambia County, Tampa is near Pinellas County and Hernando County, West Palm Beach is in Palm Beach County, Broward is close to Fort Lauderdale, Bay County has Panama City, and Miami-Dade has Miami. Contributing factors in these urban centers that could contribute to a higher psychiatric hospitalization rate include better access to hospitals, higher homeless population, and potentially more people taking part in public assistance than in rural areas. </p>
+  <p>Areas that continued to have a higher rate of hospitalization over the span of 19 years included counties Escambia, Pinellas, Paml Beach, Broward, Miami-Dade, Hernando, Bay and Indian River. These areas could be accounted for due to their close proximity to an urban center. Pensacola is located in Escambia County, Tampa is near Pinellas County and Hernando County, West Palm Beach is in Palm Beach County, Broward contains Fort Lauderdale, Bay County has Panama City, and Miami-Dade has Miami. Contributing factors in these urban centers that could contribute to a higher psychiatric hospitalization rate include better access to hospitals, higher homeless population, and potentially more people taking part in public assistance than in rural areas. </p>
 
-<h2>AREAS THAT ARE LIGHTEST</h2>
-<p>As mentioned earlier, Glades County had the fewest number of hospitalizations related to mental health. On this choropleth map, Glades County is the lightest shade of green spanning all three years. Lafayette County is not filled in because it did not have data points involving hospitalizations. Upon further research it was discovered that Lafayette County does not have a hospital facility, which would explain why <a href="https://wellflorida.org/wp-content/uploads/2018/04/Lafayette-CHA-Report-FINAL.pdf">no data exists</a> for this area of study. </p>
+<h2>AREAS THAT ARE THE LIGHTEST</h2>
+<p>As mentioned earlier, Glades County had the fewest number of hospitalizations related to mental health. On this choropleth map, Glades County is the lightest shade of green spanning all three years. Lafayette County is not filled in because it did not have data points involving hospitalizations. Upon further research it was discovered that Lafayette County <a href="https://wellflorida.org/wp-content/uploads/2018/04/Lafayette-CHA-Report-FINAL.pdf">does not have a hospital facility</a>, which would explain why no data exists for this area of study. </p>
 
-  <div id="d3id" ></div>
-  <h2>HIGHEST RATE OF HOSPITALIZATIONS: INDIAN RIVER.</h2>
+<h2>HURRICANES COULD BE CORRELATED WITH HIGHER HOSPITALIZATION RATES</h2>
+<p>
+Five counties that took direct hits from the 2004 hurricanes include Broward, Charlotte, Escambia, Martin and Palm Beach Counties, according to the <a href="http://interactive.sun-sentinel.com/2004storms/">Sun Sentinel</a>.</p>
+
+  <div id="bar_graph" ></div>
   <p>
-Indian River County is located on the eastern coast of Florida and has an <a href="https://www.census.gov/quickfacts/fact/table/indianrivercountyflorida/PST045218">estimated population</a> of 157,413 people. It is widely known for being home to the cities of Vero Beach, Sebastian, and Fellsmere. Between 1998 and 2017 there were 23,839 hospitalizations related to mental health. The <a href="https://www.census.gov/quickfacts/fact/table/indianrivercountyflorida/PST045218">largest industries</a> in Indian River County are retail, healthcare and construction. The most common jobs held by residents are office and administrative support, sales, and management. 83% of the population has health coverage, which could contribute to why such a high number of people resorted to hospital treatment.</p>
-
+  The bar graph above shows that all five counties experience an increase in rate from 2003 to 2004. Some counties even show this trend continuing into 2005. </p>
 
 <script>
 d3.json("data/fl.json").then(function(flMap) {
@@ -2009,14 +2011,14 @@ d3.json("data/fl.json").then(function(flMap) {
     	return i;
     });
 
-    var container = d3.select('#d3id'),
+    var container = d3.select('#bar_graph'),
         width = 800,
         height = 500,
         margin = {top: 30, right: 20, bottom: 30, left: 50},
         barPadding = .2,
         axisTicks = {qty: 5, outerSize: 0};
 
-    var svg = container
+    var svg1 = container
        .append("svg")
        .attr("width", width)
        .attr("height", height)
@@ -2034,7 +2036,7 @@ d3.json("data/fl.json").then(function(flMap) {
     xScale1.domain(['field1', 'field2', 'field3', "field4", "field5"]).range([0, xScale0.bandwidth()]);
     yScale.domain([0, 1200]);
 
-    var model_name = svg.selectAll(".model_name")
+    var model_name = svg1.selectAll(".model_name")
       .data(models)
       .enter().append("g")
       .attr("class", "model_name")
@@ -2111,17 +2113,17 @@ d3.json("data/fl.json").then(function(flMap) {
 
 
     // Add the X Axis
-    svg.append("g")
+    svg1.append("g")
        .attr("class", "x axis")
        .attr("transform", `translate(0,${height - margin.top - margin.bottom})`)
        .call(xAxis);
 
     // Add the Y Axis
-    svg.append("g")
+    svg1.append("g")
        .attr("class", "y axis")
        .call(yAxis);
 
-       svg.append("g")
+       svg1.append("g")
          .attr("class", "y axis")
          .call(yAxis)
          .append('text')
@@ -2131,7 +2133,7 @@ d3.json("data/fl.json").then(function(flMap) {
          .attr("fill", "#000")
          .text("Number hospitalized per 100,000 people");
     //legend
-    svg.append("g")
+    svg1.append("g")
 
       .append('text')
       .attr("y", 67)
@@ -2140,7 +2142,7 @@ d3.json("data/fl.json").then(function(flMap) {
       .attr("fill", "white")
       .text("Broward County");
 
-      svg.append("g")
+      svg1.append("g")
 
         .append('text')
         .attr("y", 107)
@@ -2149,7 +2151,7 @@ d3.json("data/fl.json").then(function(flMap) {
         .attr("fill", "white")
         .text("Charlotte County");
 
-        svg.append("g")
+        svg1.append("g")
 
           .append('text')
           .attr("y", 144)
@@ -2158,16 +2160,16 @@ d3.json("data/fl.json").then(function(flMap) {
           .attr("fill", "white")
           .text("Escambia County");
 
-          svg.append("g")
+          svg1.append("g")
 
             .append('text')
             .attr("y", 181)
             .attr("x", -425)
             .attr("transform", "rotate(-90)")
             .attr("fill", "white")
-            .text("Broward County");
+            .text("Martin County");
 
-            svg.append("g")
+            svg1.append("g")
 
               .append('text')
               .attr("y", 215)
@@ -2175,6 +2177,7 @@ d3.json("data/fl.json").then(function(flMap) {
               .attr("transform", "rotate(-90)")
               .attr("fill", "white")
               .text("Palm Beach");
+
 
     </script>
 
