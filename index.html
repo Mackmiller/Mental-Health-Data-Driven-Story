@@ -1657,8 +1657,6 @@
       });
     });
 
-
-    /* Scale */
     var xScale = d3.scaleTime()
       .domain(d3.extent(data[0].values, d => d.year))
       .range([0, width-margin]);
@@ -1668,16 +1666,12 @@
       .range([height-margin, 0]);
 
     var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-    /* Add SVG */
     var svg = d3.select("#chart").append("svg")
       .attr("width", 850)
       .attr("height", 600)
       .append('g')
       .attr("transform", `translate(${margin}, ${margin})`);
 
-
-    /* Add line into SVG */
     var line = d3.line()
       .x(d => xScale(d.year))
       .y(d => yScale(d.number));
@@ -1717,7 +1711,6 @@
             .style("stroke-width", lineStroke)
         });
 
-/* `Axis */
     var xAxis = d3.axisBottom(xScale).ticks(7);
     var yAxis = d3.axisLeft(yScale).ticks(7);
 
@@ -2044,7 +2037,6 @@ d3.json("data/fl.json").then(function(flMap) {
       .attr("class", "model_name")
       .attr("transform", d => `translate(${xScale0(d.model_name)},0)`);
 
-    /* Add field1 bars */
     model_name.selectAll(".bar.field1")
       .data(d => [d])
       .enter()
@@ -2058,7 +2050,6 @@ d3.json("data/fl.json").then(function(flMap) {
         return height - margin.top - margin.bottom - yScale(d.field1)
       });
 
-    /* Add field2 bars */
     model_name.selectAll(".bar.field2")
       .data(d => [d])
       .enter()
@@ -2072,7 +2063,6 @@ d3.json("data/fl.json").then(function(flMap) {
         return height - margin.top - margin.bottom - yScale(d.field2)
       });
 
-    /* Add field3 bars */
       model_name.selectAll(".bar.field3")
         .data(d => [d])
         .enter()
@@ -2086,7 +2076,6 @@ d3.json("data/fl.json").then(function(flMap) {
           return height - margin.top - margin.bottom - yScale(d.field3)
         });
 
-        /* Add field4 bars */
           model_name.selectAll(".bar.field4")
             .data(d => [d])
             .enter()
@@ -2099,7 +2088,7 @@ d3.json("data/fl.json").then(function(flMap) {
             .attr("height", d => {
               return height - margin.top - margin.bottom - yScale(d.field4)
             });
-            /* Add field5 bars */
+
               model_name.selectAll(".bar.field5")
                 .data(d => [d])
                 .enter()
@@ -2113,14 +2102,11 @@ d3.json("data/fl.json").then(function(flMap) {
                   return height - margin.top - margin.bottom - yScale(d.field5)
                 });
 
-
-    // Add the X Axis
     svg1.append("g")
        .attr("class", "x axis")
        .attr("transform", `translate(0,${height - margin.top - margin.bottom})`)
        .call(xAxis);
 
-    // Add the Y Axis
     svg1.append("g")
        .attr("class", "y axis")
        .call(yAxis);
@@ -2134,51 +2120,6 @@ d3.json("data/fl.json").then(function(flMap) {
          .attr("transform", "rotate(-90)")
          .attr("fill", "#000")
          .text("Number hospitalized per 100,000 people");
-    //legend
-    svg1.append("g")
-
-      .append('text')
-      .attr("y", 67)
-      .attr("x", -425)
-      .attr("transform", "rotate(-90)")
-      .attr("fill", "white")
-      .text("Broward County");
-
-      svg1.append("g")
-
-        .append('text')
-        .attr("y", 107)
-        .attr("x", -425)
-        .attr("transform", "rotate(-90)")
-        .attr("fill", "white")
-        .text("Charlotte County");
-
-        svg1.append("g")
-
-          .append('text')
-          .attr("y", 144)
-          .attr("x", -425)
-          .attr("transform", "rotate(-90)")
-          .attr("fill", "white")
-          .text("Escambia County");
-
-          svg1.append("g")
-
-            .append('text')
-            .attr("y", 181)
-            .attr("x", -425)
-            .attr("transform", "rotate(-90)")
-            .attr("fill", "white")
-            .text("Martin County");
-
-            svg1.append("g")
-
-              .append('text')
-              .attr("y", 215)
-              .attr("x", -425)
-              .attr("transform", "rotate(-90)")
-              .attr("fill", "white")
-              .text("Palm Beach");
 
 
     </script>
