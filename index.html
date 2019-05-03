@@ -17,14 +17,14 @@
     <p>
       All of these numbers are increases from years previous at the national level. Where does Florida stand in these efforts? According to the same report, Florida is high up at rank no. 10 in mental health problems and substance use problems and is also ranked 44 in how easy it is to access mental health care. Yikes.
     </p>
+
     <p>
       Florida consists of 67 established counties which each handle mental health differently as population strongly affects resources available to treat mental health conditions, including hospitals, private practices and school resources. This project explores the number of hospitalizations that are the result of mental health concerns in each county 1998-2017. Explore the graph below by hovering over different colored lines- what does your county do over time?
     </p>
     <div id="chart">
 
     <script src="js/d3.min.js"></script>
-    <div id="d3id" ></div>
-    
+
     <script>
     var data = [
       {
@@ -1694,7 +1694,6 @@
             .attr("class", "title-text")
             .style("fill", color(i))
             .text(d.county)
-            .attr("text-anchor", "middle")
             .attr("x", (width-margin)/8)
             .attr("y", (50));
         })
@@ -1744,20 +1743,20 @@
       .attr("y", 0 - (margin.top / 2))
       .attr("text-anchor", "middle")
       .style("font-size", "18px")
-      .text("Hospitalizations in Florida have generally increased 1998-2017");
+      .text("Psychiatric hospitalization rates in Florida have generally increased 1998-2017");
 
 </script>
   </div>
-  <h2>HIGHEST TOTAL NUMBER OF HOSPITALIZATIONS: INDIAN RIVER.</h2>
+  <h2>HIGHEST RATE OF HOSPITALIZATIONS: INDIAN RIVER.</h2>
   <p>
 Indian River County is located on the eastern coast of Florida and has an <a href="https://www.census.gov/quickfacts/fact/table/indianrivercountyflorida/PST045218">estimated population</a> of 157,413 people. It is widely known for being home to the cities of Vero Beach, Sebastian, and Fellsmere. Between 1998 and 2017 there were 23,839 hospitalizations related to mental health. The <a href="https://www.census.gov/quickfacts/fact/table/indianrivercountyflorida/PST045218">largest industries</a> in Indian River County are retail, healthcare and construction. The most common jobs held by residents are office and administrative support, sales, and management. 83% of the population has health coverage, which could contribute to why such a high number of people resorted to hospital treatment.</p>
-<h2>LOWEST TOTAL NUMBER OF HOSPITALIZATIONS: GLADES.</h2>
+<h2>LOWEST RATE NUMBER OF HOSPITALIZATIONS: GLADES.</h2>
 <p>Glades County has an<a href="https://www.census.gov/quickfacts/fact/table/gladescountyflorida,indianrivercountyflorida/PST045218">
 estimated population</a> of 13,724 residents, making it one of the lowest populated counties in the state. The <a href="https://datausa.io/profile/geo/glades-county-fl/">largest industries</a> are agriculture, forestry, fishing & hunting, retail and education. 18% of the population is believed to live below the national poverty line of 13.4%. 78.4% of the population has health coverage.
 
 </p>
 <p>
-Another way to visualize the change in mental health hospitalizations throughout the state of Florida is by visually seeing the state. Three years evenly spread out from the data set (1998, 2008, 2017) are displayed. The darker the shade of green, the more hospitalizations have occurred for that particular county compared to surrounding areas.   </p>
+Another way to visualize the rate of mental health hospitalizations throughout the state of Florida is by visually seeing the state. Three years evenly spread out from the data set (1998, 2008, 2017) are displayed. The darker the shade of green, the more hospitalizations have occurred for that particular county compared to surrounding areas.   </p>
 
   <div class="grid-container">
     <div class="map">
@@ -1767,6 +1766,18 @@ Another way to visualize the change in mental health hospitalizations throughout
     <div class="map3">
     <p class = "titles">2017</p></div>
   </div>
+  <h2>AREAS THAT STAYED DARK</h2>
+  <p>Areas that continued to have a higher rate of hospitalization over the span of 19 years included counties Escambia, Pinellas, Paml Beach, Broward, Miami-Dade, Hernando, Bay and Indian River. These areas could be accounted for due to their close proximity to an urban center. Pensacola is located in Escambia County, Tampa is near Pinellas County and Hernando County, West Palm Beach is in Palm Beach County, Broward is close to Fort Lauderdale, Bay County has Panama City, and Miami-Dade has Miami. Contributing factors in these urban centers that could contribute to a higher psychiatric hospitalization rate include better access to hospitals, higher homeless population, and potentially more people taking part in public assistance than in rural areas. </p>
+
+<h2>AREAS THAT ARE LIGHTEST</h2>
+<p>As mentioned earlier, Glades County had the fewest number of hospitalizations related to mental health. On this choropleth map, Glades County is the lightest shade of green spanning all three years. Lafayette County is not filled in because it did not have data points involving hospitalizations. Upon further research it was discovered that Lafayette County does not have a hospital facility, which would explain why <a href="https://wellflorida.org/wp-content/uploads/2018/04/Lafayette-CHA-Report-FINAL.pdf">no data exists</a> for this area of study. </p>
+
+  <div id="d3id" ></div>
+  <h2>HIGHEST RATE OF HOSPITALIZATIONS: INDIAN RIVER.</h2>
+  <p>
+Indian River County is located on the eastern coast of Florida and has an <a href="https://www.census.gov/quickfacts/fact/table/indianrivercountyflorida/PST045218">estimated population</a> of 157,413 people. It is widely known for being home to the cities of Vero Beach, Sebastian, and Fellsmere. Between 1998 and 2017 there were 23,839 hospitalizations related to mental health. The <a href="https://www.census.gov/quickfacts/fact/table/indianrivercountyflorida/PST045218">largest industries</a> in Indian River County are retail, healthcare and construction. The most common jobs held by residents are office and administrative support, sales, and management. 83% of the population has health coverage, which could contribute to why such a high number of people resorted to hospital treatment.</p>
+
+
 <script>
 d3.json("data/fl.json").then(function(flMap) {
       d3.csv("data/1998.csv").then(function(data) {
@@ -1966,139 +1977,206 @@ d3.json("data/fl.json").then(function(flMap) {
       });
     </script>
     <script>
+    var models = [
+      {
+        "model_name":"2003",
+        "field1":996,
+        "field2":447.6,
+        "field3":1008.9,
+        "field4":532.8,
+        "field5":921
+      },
+      {
+        "model_name":"2004",
+        "field1":1030.1,
+        "field2":598.4,
+        "field3":1014.3,
+        "field4":929.6,
+        "field5":965.3
+      },
+      {
+        "model_name":"2005",
+        "field1":1028.3,
+        "field2":512.4,
+        "field3":906.9,
+        "field4":1038.1,
+        "field5":996.1
+      },
 
-    d3.csv("data/unemployment_rate.csv").then(function(data) {
-
-      var timeParser = d3.timeParse("%Y-%m-%d");
-
-      data.forEach(function(d) {
-        d.date = timeParser(d.date);
-        d.unrate = +d.unrate;
-      });
-
-      var w = window.innerWidth,
-          h = window.innerHeight;
-
-      var margin = {
-        top: 60,
-        right: 60,
-        bottom: 60,
-        left: 60
-      };
-
-
-      var svg = d3.select("body").append("svg");
-
-      svg.attr("width", w - margin.right)
-         .attr("height", h);
-
-
-
-      var xScale = d3.scaleTime()
-        .domain(d3.extent(data, function(d) { return d.date } ))
-        .range([0, (w - margin.left - margin.right)]);
-
-      var yScale = d3.scaleLinear()
-        .domain(d3.extent(data, function(d) { return d.unrate }))
-        .range([(h - margin.top - margin.bottom), 0])
-
-
-
-      // THIS is the main difference between a line chart and an area
-      // chart: The area chart uses the area() method and includes a
-      // method which sets up the y0 value -- use the first data
-      // point in the yScale range. (Also, change the style for this
-      // line to have a fill. See the stylesheet above for details.)
-      var line = d3.area()
-        .x(function(d) { return xScale(d.date) })
-        .y0(function(d) { return yScale.range()[0]; })
-        .y1(function(d) { return yScale(d.unrate) });
-
-      svg.append("g")
-         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-         .append("path")
-         .datum(data)
-         .attr("class", "data-line")
-         .attr("d", line);
-
-
-
-      var xAxis = d3.axisBottom()
-        .scale(xScale)
-        .ticks(10);
-
-      var yAxis = d3.axisLeft()
-        .scale(yScale)
-        .ticks(10);
-
-      svg.append("g")
-        .attr("transform", "translate(" + margin.left + "," + (h - margin.bottom) + ")")
-        .attr("class", "xaxis")
-        .call(xAxis);
-
-      svg.append("g")
-         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-         .attr("class", "yaxis")
-         .call(yAxis);
-
-
-      var mean = d3.mean(data, function(d) { return d.unrate });
-
-      svg.append("line")
-         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-         .attr("class", "mean-line")
-         .attr("x1", 0)
-         .attr("x2", (w - margin.left - margin.right))
-         .attr("y1", yScale(mean))
-         .attr("y2", yScale(mean));
-
-      svg.append("text")
-         .attr("x", 20)
-         .attr("y", yScale(mean))
-         .attr("transform", "translate(" + (margin.left + 5) + "," + (margin.top - 5) + ")")
-         .text("Mean Unemployment Rate: " + mean.toPrecision(2))
-
-
-
-      var maxRate = data.filter(function(d) {
-
-        var max = d3.max(data, function(d) { return d.unrate });
-
-        if(d.unrate == max) {
-          return d.unrate;
-        }
-      });
-
-      svg.selectAll("circle")
-         .data(maxRate)
-         .enter()
-         .append("circle")
-         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-         .attr("cx", function(d) { return xScale(d.date) } )
-         .attr("cy", function(d) { return yScale(d.unrate) } )
-         .attr("r", 2);
-
-
-      var maxRateX = xScale(maxRate[0].date),
-          maxRateY = yScale(maxRate[0].unrate);
-
-      svg.append("line")
-         .attr("class", "note-line")
-         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-         .attr("x1", (maxRateX + 3))
-         .attr("x2", (maxRateX + 13))
-         .attr("y1", (maxRateY - 3))
-         .attr("y2", (maxRateY - 13));
-
-      svg.append("text")
-         .text("Highest Unemployment Rate, " + maxRate[0].unrate + " percent")
-         .attr("x", (maxRateX + 14))
-         .attr("y", (maxRateY - 14))
-         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
+    ];
+    models = models.map(i => {
+      i.model_name = i.model_name;
+    	return i;
     });
 
-  </script>
+    var container = d3.select('#d3id'),
+        width = 800,
+        height = 500,
+        margin = {top: 30, right: 20, bottom: 30, left: 50},
+        barPadding = .2,
+        axisTicks = {qty: 5, outerSize: 0};
+
+    var svg = container
+       .append("svg")
+       .attr("width", width)
+       .attr("height", height)
+       .append("g")
+       .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    var xScale0 = d3.scaleBand().range([0, width - margin.left - margin.right]).padding(barPadding);
+    var xScale1 = d3.scaleBand();
+    var yScale = d3.scaleLinear().range([height - margin.top - margin.bottom, 0]);
+
+    var xAxis = d3.axisBottom(xScale0).tickSizeOuter(axisTicks.outerSize);
+    var yAxis = d3.axisLeft(yScale).ticks(axisTicks.qty).tickSizeOuter(axisTicks.outerSize);
+
+    xScale0.domain(models.map(d => d.model_name));
+    xScale1.domain(['field1', 'field2', 'field3', "field4", "field5"]).range([0, xScale0.bandwidth()]);
+    yScale.domain([0, 1200]);
+
+    var model_name = svg.selectAll(".model_name")
+      .data(models)
+      .enter().append("g")
+      .attr("class", "model_name")
+      .attr("transform", d => `translate(${xScale0(d.model_name)},0)`);
+
+    /* Add field1 bars */
+    model_name.selectAll(".bar.field1")
+      .data(d => [d])
+      .enter()
+      .append("rect")
+      .attr("class", "bar field1")
+    .style("fill","#5FA5A5")
+      .attr("x", d => xScale1('field1'))
+      .attr("y", d => yScale(d.field1))
+      .attr("width", xScale1.bandwidth())
+      .attr("height", d => {
+        return height - margin.top - margin.bottom - yScale(d.field1)
+      });
+
+    /* Add field2 bars */
+    model_name.selectAll(".bar.field2")
+      .data(d => [d])
+      .enter()
+      .append("rect")
+      .attr("class", "bar field2")
+    .style("fill","#CCBE49")
+      .attr("x", d => xScale1('field2'))
+      .attr("y", d => yScale(d.field2))
+      .attr("width", xScale1.bandwidth())
+      .attr("height", d => {
+        return height - margin.top - margin.bottom - yScale(d.field2)
+      });
+
+    /* Add field3 bars */
+      model_name.selectAll(".bar.field3")
+        .data(d => [d])
+        .enter()
+        .append("rect")
+        .attr("class", "bar field3")
+      .style("fill","#E17B45")
+        .attr("x", d => xScale1('field3'))
+        .attr("y", d => yScale(d.field3))
+        .attr("width", xScale1.bandwidth())
+        .attr("height", d => {
+          return height - margin.top - margin.bottom - yScale(d.field3)
+        });
+
+        /* Add field4 bars */
+          model_name.selectAll(".bar.field4")
+            .data(d => [d])
+            .enter()
+            .append("rect")
+            .attr("class", "bar field4")
+          .style("fill","#DC3C75")
+            .attr("x", d => xScale1('field4'))
+            .attr("y", d => yScale(d.field4))
+            .attr("width", xScale1.bandwidth())
+            .attr("height", d => {
+              return height - margin.top - margin.bottom - yScale(d.field4)
+            });
+            /* Add field5 bars */
+              model_name.selectAll(".bar.field5")
+                .data(d => [d])
+                .enter()
+                .append("rect")
+                .attr("class", "bar field5")
+              .style("fill","#392D37")
+                .attr("x", d => xScale1('field5'))
+                .attr("y", d => yScale(d.field5))
+                .attr("width", xScale1.bandwidth())
+                .attr("height", d => {
+                  return height - margin.top - margin.bottom - yScale(d.field5)
+                });
+
+
+    // Add the X Axis
+    svg.append("g")
+       .attr("class", "x axis")
+       .attr("transform", `translate(0,${height - margin.top - margin.bottom})`)
+       .call(xAxis);
+
+    // Add the Y Axis
+    svg.append("g")
+       .attr("class", "y axis")
+       .call(yAxis);
+
+       svg.append("g")
+         .attr("class", "y axis")
+         .call(yAxis)
+         .append('text')
+         .attr("y", -43)
+         .attr("x", -120)
+         .attr("transform", "rotate(-90)")
+         .attr("fill", "#000")
+         .text("Number hospitalized per 100,000 people");
+    //legend
+    svg.append("g")
+
+      .append('text')
+      .attr("y", 67)
+      .attr("x", -425)
+      .attr("transform", "rotate(-90)")
+      .attr("fill", "white")
+      .text("Broward County");
+
+      svg.append("g")
+
+        .append('text')
+        .attr("y", 107)
+        .attr("x", -425)
+        .attr("transform", "rotate(-90)")
+        .attr("fill", "white")
+        .text("Charlotte County");
+
+        svg.append("g")
+
+          .append('text')
+          .attr("y", 144)
+          .attr("x", -425)
+          .attr("transform", "rotate(-90)")
+          .attr("fill", "white")
+          .text("Escambia County");
+
+          svg.append("g")
+
+            .append('text')
+            .attr("y", 181)
+            .attr("x", -425)
+            .attr("transform", "rotate(-90)")
+            .attr("fill", "white")
+            .text("Broward County");
+
+            svg.append("g")
+
+              .append('text')
+              .attr("y", 215)
+              .attr("x", -425)
+              .attr("transform", "rotate(-90)")
+              .attr("fill", "white")
+              .text("Palm Beach");
+
+    </script>
 
   </body>
 </html>
