@@ -56,5 +56,8 @@ fill: none;
   margin: 0px auto;
 
 
+}
 
+path {
+  stroke: black;
 }
