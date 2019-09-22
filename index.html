@@ -22,6 +22,7 @@
       Florida consists of 67 established counties which each handle mental health differently as population strongly affects resources available to treat mental health conditions, including hospitals, private practices and school resources. This project explores the number of hospitalizations that are the result of mental health concerns in each county 1998-2017. Explore the graph below by hovering over different colored lines- what does your county do over time?
     </p>
     <div id="chart"></div>
+      <div id="chart2"></div>
 
     <script src="js/d3.min.js"></script>
 
@@ -103,6 +104,7 @@
           {year: "1998", number: "764.5"}
         ]
       },
+
       {
         county: "Miami-Dade County",
         values: [
@@ -1641,7 +1643,7 @@
     var margin = 50;
     var duration = 250;
 
-    var lineOpacity = "0.25";
+    var lineOpacity = "0.3";
     var lineOpacityHover = "0.85";
     var otherLinesOpacityHover = "0.1";
     var lineStroke = "1.5px";
@@ -1665,7 +1667,11 @@
       .domain([0, d3.max(data[0].values, d => d.number)])
       .range([height-margin, 0]);
 
-    var color = d3.scaleOrdinal(d3.schemeCategory10);
+   //var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+   var color = d3.scaleOrdinal().domain(data)
+  .range(["#BBB9BB ","#BBB9BB ","#BBB9BB ","#CB3576","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB ","#BBB9BB " ]);
+
     var svg = d3.select("#chart").append("svg")
       .attr("width", 850)
       .attr("height", 600)
@@ -1686,7 +1692,7 @@
       .on("mouseover", function(d, i) {
           svg.append("text")
             .attr("class", "title-text")
-            .style("fill", color(i))
+            .style("fill", "black")
             .text(d.county)
             .attr("x", (55))
             .attr("y", (50));
@@ -1848,6 +1854,61 @@
 
 </script>
 
+    <!-- <div id="chart2"></div>
+
+    <script>
+    var w = 500;
+    var h = 420;
+    var padding = 2;
+    var dataset = [5, 10, 13, 19, 21, 25, 11, 25, 22, 18, 7];
+    var svg2 = d3.select("#chart2").append("svg")// Use a value to pick a color.  This could be used to highlight KPIs etc.
+    function colorPicker(v) {
+      if (v <= 20) {
+        return "#666666";
+      } else if (v > 20) {
+        return "#FF0033";
+      }
+    }
+    svg.selectAll("rect") // Build the chart.
+      .data(dataset)
+      .enter() // Creates elements if they do not already exist.
+      .append("rect") // Creates a rectangle.
+      .attr({
+        x: function(d, i) {
+          return i * (w / dataset.length);
+        },
+        y: function(d) {
+          return h - (d * 4);
+        },
+        width: w / dataset.length - padding,
+        height: function(d) {
+          return d * 4;
+        },
+        fill: function(d) {
+          return colorPicker(d); // call the color picker to get the fill.
+        }
+      });
+    svg.selectAll("text").data(dataset).enter()
+      .append("text")
+      .text(function(d) {
+        return d;
+      })
+      .attr({
+        "text-anchor": "middle",
+        x: function(d, i) {
+          return i * (w / dataset.length) + (w / dataset.length - padding) / 2;
+        },
+        y: function(d) {
+          return h - (d * 4) + 14;
+        },
+        "font-family": "sans-serif",
+        "font-size": 12,
+        "fill": "#ffffff"
+      });
+    </script> -->
+
+
+
 
   <h2>HIGHEST RATE OF HOSPITALIZATIONS: INDIAN RIVER.</h2>
   <p>
@@ -1918,10 +1979,15 @@ d3.json("data/fl.json").then(function(flMap) {
           var path = d3.geoPath().projection(projection);
           var colors = d3.scaleQuantize()
                          .domain(d3.extent(flFeatures, function(d) { return d.properties.pop; }))
-                         .range(["#e5f4e0", "#cae4c0", "#aacf9d",
-                                 "#87b476", "#6c9e5a", "#548741",
-                                 "#40722d", "#2e5c1d", "#1e4410",
-                                 "#102a07", "#071602"]);
+                         // .range(["#e5f4e0", "#cae4c0", "#aacf9d",
+                         //         "#87b476", "#6c9e5a", "#548741",
+                         //         "#40722d", "#2e5c1d", "#1e4410",
+                         //         "#102a07", "#071602"]);
+                         //         "#102a07", "#071602"]);
+                           .range(d3.schemePuRd[5]);
+
+
+
 
           svg.selectAll("path")
              .data(flFeatures)
@@ -1982,10 +2048,11 @@ d3.json("data/fl.json").then(function(flMap) {
           var path = d3.geoPath().projection(projection);
           var colors = d3.scaleQuantize()
                          .domain(d3.extent(flFeatures, function(d) { return d.properties.pop; }))
-                         .range(["#e5f4e0", "#cae4c0", "#aacf9d",
-                                 "#87b476", "#6c9e5a", "#548741",
-                                 "#40722d", "#2e5c1d", "#1e4410",
-                                 "#102a07", "#071602"]);
+                         // .range(["#e5f4e0", "#cae4c0", "#aacf9d",
+                         //         "#87b476", "#6c9e5a", "#548741",
+                         //         "#40722d", "#2e5c1d", "#1e4410",
+                         //         "#102a07", "#071602"]);
+                             .range(d3.schemePuRd[5]);
 
           svg.selectAll("path")
              .data(flFeatures)
@@ -2003,7 +2070,7 @@ d3.json("data/fl.json").then(function(flMap) {
              .attr("stroke-width", ".5px");
 
           // Plot
-        /*  svg.selectAll("circle")
+         svg.selectAll("circle")
              .data(places)
              .enter()
              .append("circle")
@@ -2017,7 +2084,7 @@ d3.json("data/fl.json").then(function(flMap) {
                  return projection([d.longitude, d.latitude])[1]
                }
              })
-             .attr("r", 3);*/
+             .attr("r", 3);
 
         });
       });
@@ -2058,10 +2125,12 @@ d3.json("data/fl.json").then(function(flMap) {
             var path = d3.geoPath().projection(projection);
             var colors = d3.scaleQuantize()
                            .domain(d3.extent(flFeatures, function(d) { return d.properties.pop; }))
-                           .range(["#e5f4e0", "#cae4c0", "#aacf9d",
-                                   "#87b476", "#6c9e5a", "#548741",
-                                   "#40722d", "#2e5c1d", "#1e4410",
-                                   "#102a07", "#071602"]);
+                           // .range(["#e5f4e0", "#cae4c0", "#aacf9d",
+                           //         "#87b476", "#6c9e5a", "#548741",
+                           //         "#40722d", "#2e5c1d", "#1e4410",
+                           //         "#102a07", "#071602"]);
+                     .range(d3.schemePuRd[5]);
+
 
             svg.selectAll("path")
                .data(flFeatures)
