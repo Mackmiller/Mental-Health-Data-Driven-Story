@@ -2004,6 +2004,21 @@ d3.json("data/fl.json").then(function(flMap) {
              .attr("stroke", "#fff")
              .attr("stroke-width", ".5px");
 
+             svg.selectAll("circle")
+                 .data(places)
+                 .enter()
+                 .append("circle")
+                 .attr("cx", function(d) {
+                   if(projection([d.longitude, d.latitude])) {
+                     return projection([d.longitude, d.latitude])[0]
+                   }
+                 })
+                 .attr("cy", function(d) {
+                   if(projection([d.longitude, d.latitude])) {
+                     return projection([d.longitude, d.latitude])[1]
+                   }
+                 })
+                 .attr("r", 5);
 
         });
 
@@ -2084,7 +2099,7 @@ d3.json("data/fl.json").then(function(flMap) {
                  return projection([d.longitude, d.latitude])[1]
                }
              })
-             .attr("r", 3);
+             .attr("r", 5);
 
         });
       });
@@ -2147,6 +2162,22 @@ d3.json("data/fl.json").then(function(flMap) {
                .attr("stroke", "#fff")
                .attr("stroke-width", ".5px");
 
+
+               svg.selectAll("circle")
+                   .data(places)
+                   .enter()
+                   .append("circle")
+                   .attr("cx", function(d) {
+                     if(projection([d.longitude, d.latitude])) {
+                       return projection([d.longitude, d.latitude])[0]
+                     }
+                   })
+                   .attr("cy", function(d) {
+                     if(projection([d.longitude, d.latitude])) {
+                       return projection([d.longitude, d.latitude])[1]
+                     }
+                   })
+                   .attr("r", 5);
           });
         });
       });
