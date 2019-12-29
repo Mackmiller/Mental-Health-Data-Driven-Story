@@ -1641,7 +1641,7 @@
     var margin = 50;
     var duration = 250;
 
-    var lineOpacity = "0.3";
+    var lineOpacity = "0.4";
     var lineOpacityHover = "0.85";
     var otherLinesOpacityHover = "0.1";
     var lineStroke = "1.5px";
@@ -1782,6 +1782,12 @@
       .style("font-size", "18px")
       .text("Psychiatric hospitalization rates in Florida have generally increased 1998-2017");
 
+      svg.append("text")
+       .attr("x", 110)
+       .attr("y", 255)
+       .attr("fill", "#BC7AA1")
+         .style("font-size", "10px")
+         .text("State Average");
 
           /*  svg.append("text")
                    .attr("x", 196)
