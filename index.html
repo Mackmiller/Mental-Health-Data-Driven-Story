@@ -2049,12 +2049,22 @@ d3.json("data/fl.json").then(function(flMap) {
                    .style("font-size", "10px")
                    .text("Highest hospitalization average");
 
+                   /*svg.append("line")
+                         .attr("y1", (10))
+                            .attr("y2", (20))
+                            .attr("x1", (10))
+                            .attr("x2", (20));*/
+
                    svg.append("text")
                                 .attr("x", 45)
                                 .attr("y", 35)
                                 .style("font-family", "sans-serif")
                                 .style("font-size", "10px")
                                 .text("Lowest hospitalization average");
+
+
+
+
 
         });
 
