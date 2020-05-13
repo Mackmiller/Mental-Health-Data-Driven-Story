@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="CVD-19 Virus" src="img/capstone_header.png" />
+  <img alt="Title" src="title3.png" />
 </p>
 
 # Psychiatric Hospitalizations: Exploring Florida's mental health hospitalizations data
