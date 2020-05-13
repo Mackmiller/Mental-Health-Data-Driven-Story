@@ -33,3 +33,5 @@ This project was built using D3.js, HTML, and CSS.
 - [@mackmilllr](https://twitter.com/mackmilllr) Designer, Coder, Writer
 - [@carolineradell](https://www.instagram.com/carolineradell/?hl=en) Artist
 - [@rinkside](https://twitter.com/rinkside) Advisor
+
+A postmortem blog was written, linked [here](https://www.mackmiller.design/blog/mental-health).
