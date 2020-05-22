@@ -36,5 +36,5 @@ This project was built using D3.js, HTML, and CSS.
 
 A postmortem blog was written, linked [here](https://www.mackmiller.design/blog/mental-health).
 
-Content last updated December 2018.
+Content last updated December 2019.
 
