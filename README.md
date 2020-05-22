@@ -35,3 +35,5 @@ This project was built using D3.js, HTML, and CSS.
 - [@rinkside](https://twitter.com/rinkside) Advisor
 
 A postmortem blog was written, linked [here](https://www.mackmiller.design/blog/mental-health).
+
+Last updated December 2019.
